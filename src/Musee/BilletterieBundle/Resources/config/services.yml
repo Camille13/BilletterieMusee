@@ -1,0 +1,8 @@
+# src/Musee/BilletterieBundle/Resources/config/services.yml
+
+
+services:
+
+    musee_billetterie.formulaire:
+
+        class: Musee\BilletterieBundle\Formulaire\MuseeFormulaire

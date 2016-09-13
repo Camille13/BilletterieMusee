@@ -1,0 +1,159 @@
+{# src/Musee/BilletterieBundle/Resources/views/Formulaire/index.html.twig #}
+
+{% extends "MuseeBilletterieBundle::Layout.html.twig" %}
+{% block title %}{{ parent() }} - Billetterie {% endblock %}
+{% block body %}
+    <div class="container-fluid">
+       <div class="navbar navbar-inverse row">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Billetterie du Musée du Louvre</a>
+                </div>
+                <ul class="nav navbar-nav">
+
+                    <li class="active"> <a href="#">Accueil</a> </li>
+
+                    <li> <a href="#">Tarifs</a> </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-1"  id="img">
+                <table class="table table-bordered table-condensed">
+                    <legend> Tarifs de viste du Musée du Louvre</legend>
+                    <tr>
+                        <td>Tarif</td>
+                        <td>Conditions</td>
+                        <td>Prix</td>
+                    </tr>
+                    <tr>
+                        <td>Normal</td>
+                        <td>à partir de 12 ans</td>
+                        <td>16,00€</td>
+                    </tr>
+                    <tr>
+                        <td>Enfant</td>
+                        <td>A partir de 4 ans jusqu'à 12 ans (Gratuit pour les moins de 4 ans)</td>
+                        <td>8,00€ </td>
+                    </tr>
+                    <tr>
+                        <td>Sénior</td>
+                        <td>à partir de 60 ans </td>
+                        <td>12,00€</td>
+                    </tr>
+                    <tr>
+                        <td>Réduit</td>
+                        <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif)</td>
+                        <td>10,00€</td>
+                    </tr>
+                </table>
+                <p> Le musée est ouvert tous les jours sauf le mardi et dimanche (et fermé les 1er mai, 1er novembre et 25 décembre et jours fériés). </p>
+            </div>
+            <div class="col-lg-6">
+
+                <div class="well">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>
+                    {{ form_errors(form) }}
+                    <div class="form-group">
+                        {{ form_label(form.date, "Date de la visite *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(form.date) }}
+                        <div class="col-sm-8">
+                            <div class="input-group date" data-provide="datepicker">
+
+                                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.email, "Adresse email *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(form.email) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.type, "Type *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(form.type) }}
+                        <div class="col-sm-8">
+                            
+
+                                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+
+                              
+                            </div>  
+                        </div>
+                    
+                            <div class="form-group">
+                        {{ form_label(form.quantite, "Quantité *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(form.quantite) }}
+                        <div class="col-sm-8">
+                            
+
+                                {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+
+                              
+                            </div>  
+                        </div>
+                        
+                    <div class="form-group">
+                        <div class="col-sm-12 ">
+                            {{ form_widget(form.Suivant, {'attr': {'class': 'btn btn-primary center-block'}}) }}
+
+                        </div>
+                    </div>
+                    
+                    
+                                        
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            {{ form_start(formV, {'attr': {'class': 'form-horizontal'}}) }}
+                            <legend>   Visiteur </legend>
+                            {{ form_errors(formV) }}                        
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formV.nom, "Nom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(formV.nom) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(formV.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(formV.prenom, "Prénom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(formV.prenom) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(formV.prenom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(formV.born, "Date de naissance *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(formV.born) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(formV.born, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>
+                    <div class="form-group" style="text-align:left;">
+                        {{ form_label(formV.tarif_reduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        <div class="col-sm-8 ">
+
+                            {{ form_widget(formV.tarif_reduit, {'attr': {'class': 'left-block'}}) }}
+                            Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture
+                        </div>
+                        {{ form_errors(formV.tarif_reduit) }}
+                        {{ form_end(formV) }}
+                    </div>
+                </div>
+            </div>
+
+
+        {% endblock %}
+
+

@@ -1,0 +1,7 @@
+# src/Musee/BilletterieBundle/Resources/config/routing.yml
+musee_billetterie_home:
+    path:    /billetterie
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:index }
+musee_billetterie_form:
+    path:    /form
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:add }
