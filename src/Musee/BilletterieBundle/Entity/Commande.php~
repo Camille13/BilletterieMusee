@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="Musee\BilletterieBundle\Repository\CommandeRepository")
  */
-class Commande
-{
+class Commande {
+
     /**
      * @var int
      *
@@ -20,52 +20,44 @@ class Commande
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
-	
-	 /**
+
+    
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="ligneCommande", type="string", length=255)
+     */
+    private $ligneCommande;
+    
+    
+    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
-	 
-	    private $nom;
-		
-		
-		
-		 /**
+    private $nom;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=255)
      */
-	 
-	    private $prenom;
-	
-	
-	
-	
-	
+    private $prenom;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date")
      */
-	 
-	  
-	 
     private $date;
-	
-	
-	
-	
 
     /**
      * @var string
      *
      * @ORM\Column(name="born", type="string", length=255)
      */
-	 
-	    private $born;
+    private $born;
 
     /**
      * @var string
@@ -94,7 +86,7 @@ class Commande
      * @ORM\Column(name="prixTotal", type="string", length=255)
      */
     private $prixTotal;
- 
+
     /**
      * @var string
      *
@@ -102,13 +94,17 @@ class Commande
      */
     private $quantite;
 
+  public function __construct()
+    {
+        $this->ligneCommande = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -119,9 +115,10 @@ class Commande
      *
      * @return Commande
      */
-    public function setDate($date)
-    {
+    public function setDate(\Datetime $date) {
+
         $this->date = $date;
+
 
         return $this;
     }
@@ -131,8 +128,7 @@ class Commande
      *
      * @return \DateTime
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -143,8 +139,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setType($type)
-    {
+    public function setType($type) {
         $this->type = $type;
 
         return $this;
@@ -155,8 +150,7 @@ class Commande
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -167,8 +161,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -179,8 +172,7 @@ class Commande
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -191,8 +183,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setToken($token)
-    {
+    public function setToken($token) {
         $this->token = $token;
 
         return $this;
@@ -203,8 +194,7 @@ class Commande
      *
      * @return string
      */
-    public function getToken()
-    {
+    public function getToken() {
         return $this->token;
     }
 
@@ -215,8 +205,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setPrixTotal($prixTotal)
-    {
+    public function setPrixTotal($prixTotal) {
         $this->prixTotal = $prixTotal;
 
         return $this;
@@ -227,8 +216,7 @@ class Commande
      *
      * @return string
      */
-    public function getPrixTotal()
-    {
+    public function getPrixTotal() {
         return $this->prixTotal;
     }
 
@@ -239,8 +227,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setBorn($born)
-    {
+    public function setBorn($born) {
         $this->born = $born;
 
         return $this;
@@ -251,8 +238,7 @@ class Commande
      *
      * @return string
      */
-    public function getBorn()
-    {
+    public function getBorn() {
         return $this->born;
     }
 
@@ -263,8 +249,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -275,8 +260,7 @@ class Commande
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -287,8 +271,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setPrenom($prenom)
-    {
+    public function setPrenom($prenom) {
         $this->prenom = $prenom;
 
         return $this;
@@ -299,8 +282,7 @@ class Commande
      *
      * @return string
      */
-    public function getPrenom()
-    {
+    public function getPrenom() {
         return $this->prenom;
     }
 
@@ -311,8 +293,7 @@ class Commande
      *
      * @return Commande
      */
-    public function setQuantite($quantite)
-    {
+    public function setQuantite($quantite) {
         $this->quantite = $quantite;
 
         return $this;
@@ -323,8 +304,8 @@ class Commande
      *
      * @return string
      */
-    public function getQuantite()
-    {
+    public function getQuantite() {
         return $this->quantite;
     }
+
 }

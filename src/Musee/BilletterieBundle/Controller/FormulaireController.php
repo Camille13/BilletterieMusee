@@ -18,13 +18,9 @@ use Musee\BilletterieBundle\Entity\LigneCommande;
 use Musee\BilletterieBundle\Form\Type\FormBilletterieGeneral;
 use Musee\BilletterieBundle\Form\Type\FormBilletterieVisiteur;
 
-
-
-
 class FormulaireController extends Controller
 {
 
-	
  public function indexAction()
 {
 $content = $this->get('templating')->render('MuseeBilletterieBundle:Formulaire:index.html.twig');
@@ -33,15 +29,21 @@ return new Response($content);
     
 public function addAction(Request $request)
 {
-$cmd = new Commande();
-$form = $this->createForm(FormBilletterieGeneral::class, $cmd);
-$form=$form->createView();	
+    
+    
+     $commande = new Commande();  
+       $quantite=$commande->getQuantite();  
+       $visiteur1 = new LigneCommande();
+        $visiteur1->setNom($quantite);
+        $commande->getLigneCommande()->add($visiteur1);
+        //$visiteur2 = new LigneCommande();
+        //$commande->getLigneCommande()->add($visiteur2);
+        $form = $this->createForm(FormBilletterieGeneral::class, $commande);
+        $form->handleRequest($request);
 
-$visiteur = new LigneCommande();
-$formV = $this->createForm(FormBilletterieVisiteur::class, $visiteur);
-$formV=$formV->createView();	
+        if ($form->isValid()) {    echo $quantite;        }
 
-return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $form, 'formV' => $formV, )); 
+return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $form->createView(), 'init' => 1, )); 
   
 }
 }?>

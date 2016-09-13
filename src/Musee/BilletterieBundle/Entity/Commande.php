@@ -1,7 +1,7 @@
 <?php
 
 namespace Musee\BilletterieBundle\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,6 +21,16 @@ class Commande {
      */
     private $id;
 
+    
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="ligneCommande", type="string", length=255)
+     */
+    private $ligneCommande;
+    
+    
     /**
      * @var string
      *
@@ -36,7 +46,7 @@ class Commande {
     private $prenom;
 
     /**
-     * @var \DateTime
+     * @var string
      *
      * @ORM\Column(name="date", type="date")
      */
@@ -84,7 +94,10 @@ class Commande {
      */
     private $quantite;
 
- 
+  public function __construct()
+    {
+        $this->ligneCommande = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -102,7 +115,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setDate(\Datetime $date) {
+    public function setDate($date) {
 
         $this->date = $date;
 
@@ -295,4 +308,28 @@ class Commande {
         return $this->quantite;
     }
 
+
+    /**
+     * Set ligneCommande
+     *
+     * @param string $ligneCommande
+     *
+     * @return Commande
+     */
+    public function setLigneCommande($ligneCommande)
+    {
+        $this->ligneCommande = $ligneCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get ligneCommande
+     *
+     * @return string
+     */
+    public function getLigneCommande()
+    {
+        return $this->ligneCommande;
+    }
 }

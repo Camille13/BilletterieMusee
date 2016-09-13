@@ -53,7 +53,9 @@
             <div class="col-lg-6">
 
                 <div class="well">
-                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    
+                    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
+                   
                     <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>
                     {{ form_errors(form) }}
                     <div class="form-group">
@@ -108,48 +110,51 @@
                         </div>
                     </div>
                     
-                    
-                                        
+                        {% for ligneCommande in form.ligneCommande %}
+           
+                            
+                        <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>    
+                                     
                     <div class="form-group">
-                        <div class="col-sm-4">
-                            {{ form_start(formV, {'attr': {'class': 'form-horizontal'}}) }}
-                            <legend>   Visiteur </legend>
-                            {{ form_errors(formV) }}                        
-
+                        {{ form_label(ligneCommande.nom, "Nom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(ligneCommande.nom) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(ligneCommande.nom, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+   
+                   
                     <div class="form-group">
-                        {{ form_label(formV.nom, "Nom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(formV.nom) }}
+                        {{ form_label(ligneCommande.prenom, "Prénom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(ligneCommande.prenom) }}
                         <div class="col-sm-8">
-                            {{ form_widget(formV.nom, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(formV.prenom, "Prénom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(formV.prenom) }}
-                        <div class="col-sm-8">
-                            {{ form_widget(formV.prenom, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(ligneCommande.prenom, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        {{ form_label(formV.born, "Date de naissance *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(formV.born) }}
+                        {{ form_label(ligneCommande.born, "Date de naissance *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(ligneCommande.born) }}
                         <div class="col-sm-8">
-                            {{ form_widget(formV.born, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(ligneCommande.born, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
                     <div class="form-group" style="text-align:left;">
-                        {{ form_label(formV.tarif_reduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_label(ligneCommande.tarif_reduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         <div class="col-sm-8 ">
 
-                            {{ form_widget(formV.tarif_reduit, {'attr': {'class': 'left-block'}}) }}
+                            {{ form_widget(ligneCommande.tarif_reduit, {'attr': {'class': 'left-block'}}) }}
                             Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture
                         </div>
-                        {{ form_errors(formV.tarif_reduit) }}
-                        {{ form_end(formV) }}
+                        {{ form_errors(ligneCommande.tarif_reduit) }}
+                  
                     </div>
+                    
+                    
+                    
+                    
+                         {% endfor %}
+             {{ form_end(form, {'render_rest': false}) }}
                 </div>
             </div>
 
