@@ -22,33 +22,33 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_168491a98d748ad4ab74d5cac0f30fc383a75be14a3389359140d8ac313c86b3 = $this->env->getExtension("native_profiler");
-        $__internal_168491a98d748ad4ab74d5cac0f30fc383a75be14a3389359140d8ac313c86b3->enter($__internal_168491a98d748ad4ab74d5cac0f30fc383a75be14a3389359140d8ac313c86b3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle:Formulaire:index.html.twig"));
+        $__internal_59ca8300b161d22710b43f1f99b85efc4b7ae459cafc3ec0e539ce1b0d7bcdc9 = $this->env->getExtension("native_profiler");
+        $__internal_59ca8300b161d22710b43f1f99b85efc4b7ae459cafc3ec0e539ce1b0d7bcdc9->enter($__internal_59ca8300b161d22710b43f1f99b85efc4b7ae459cafc3ec0e539ce1b0d7bcdc9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle:Formulaire:index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_168491a98d748ad4ab74d5cac0f30fc383a75be14a3389359140d8ac313c86b3->leave($__internal_168491a98d748ad4ab74d5cac0f30fc383a75be14a3389359140d8ac313c86b3_prof);
+        $__internal_59ca8300b161d22710b43f1f99b85efc4b7ae459cafc3ec0e539ce1b0d7bcdc9->leave($__internal_59ca8300b161d22710b43f1f99b85efc4b7ae459cafc3ec0e539ce1b0d7bcdc9_prof);
 
     }
 
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        $__internal_bcc4cb0eccca5edc9b9451c8d8f659bc378c31d5329d48924ad2243d648473eb = $this->env->getExtension("native_profiler");
-        $__internal_bcc4cb0eccca5edc9b9451c8d8f659bc378c31d5329d48924ad2243d648473eb->enter($__internal_bcc4cb0eccca5edc9b9451c8d8f659bc378c31d5329d48924ad2243d648473eb_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_82749fce1dfc5271560e2e53c7b32e6d9d09451857ec9457961fc72c073a5129 = $this->env->getExtension("native_profiler");
+        $__internal_82749fce1dfc5271560e2e53c7b32e6d9d09451857ec9457961fc72c073a5129->enter($__internal_82749fce1dfc5271560e2e53c7b32e6d9d09451857ec9457961fc72c073a5129_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         $this->displayParentBlock("title", $context, $blocks);
         echo " - Billetterie ";
         
-        $__internal_bcc4cb0eccca5edc9b9451c8d8f659bc378c31d5329d48924ad2243d648473eb->leave($__internal_bcc4cb0eccca5edc9b9451c8d8f659bc378c31d5329d48924ad2243d648473eb_prof);
+        $__internal_82749fce1dfc5271560e2e53c7b32e6d9d09451857ec9457961fc72c073a5129->leave($__internal_82749fce1dfc5271560e2e53c7b32e6d9d09451857ec9457961fc72c073a5129_prof);
 
     }
 
     // line 5
     public function block_body($context, array $blocks = array())
     {
-        $__internal_2a04330cef49e8ff85046237e437c18ffc6c53e8e4878168d44f7cb821b3e9c0 = $this->env->getExtension("native_profiler");
-        $__internal_2a04330cef49e8ff85046237e437c18ffc6c53e8e4878168d44f7cb821b3e9c0->enter($__internal_2a04330cef49e8ff85046237e437c18ffc6c53e8e4878168d44f7cb821b3e9c0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_c770bc270621b4e33210ccdea048d89dc2e7a933d3cb6974dead32ab8893c0cd = $this->env->getExtension("native_profiler");
+        $__internal_c770bc270621b4e33210ccdea048d89dc2e7a933d3cb6974dead32ab8893c0cd->enter($__internal_c770bc270621b4e33210ccdea048d89dc2e7a933d3cb6974dead32ab8893c0cd_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
         echo "    <div class=\"container-fluid\">
@@ -106,7 +106,10 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
         // line 57
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("class" => "form-horizontal", "method" => "GET")));
         echo "
-                   
+                   ";
+        // line 58
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'row');
+        echo "
                     <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>
                     ";
         // line 60
@@ -209,7 +212,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "ligneCommande", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["ligneCommande"]) {
             // line 114
-            echo "           
+            echo "     
                             
                         <div class=\"form-group\"><div class=\"col-sm-4\"><legend>   Visiteur  ";
             // line 116
@@ -307,7 +310,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
         ";
         
-        $__internal_2a04330cef49e8ff85046237e437c18ffc6c53e8e4878168d44f7cb821b3e9c0->leave($__internal_2a04330cef49e8ff85046237e437c18ffc6c53e8e4878168d44f7cb821b3e9c0_prof);
+        $__internal_c770bc270621b4e33210ccdea048d89dc2e7a933d3cb6974dead32ab8893c0cd->leave($__internal_c770bc270621b4e33210ccdea048d89dc2e7a933d3cb6974dead32ab8893c0cd_prof);
 
     }
 
@@ -323,7 +326,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
     public function getDebugInfo()
     {
-        return array (  301 => 157,  287 => 149,  281 => 146,  275 => 143,  268 => 139,  263 => 137,  259 => 136,  251 => 131,  246 => 129,  242 => 128,  233 => 122,  228 => 120,  224 => 119,  216 => 116,  212 => 114,  208 => 113,  200 => 108,  189 => 100,  182 => 96,  178 => 95,  168 => 88,  161 => 84,  157 => 83,  150 => 79,  145 => 77,  141 => 76,  129 => 67,  122 => 63,  118 => 62,  113 => 60,  107 => 57,  54 => 6,  48 => 5,  35 => 4,  11 => 3,);
+        return array (  304 => 157,  290 => 149,  284 => 146,  278 => 143,  271 => 139,  266 => 137,  262 => 136,  254 => 131,  249 => 129,  245 => 128,  236 => 122,  231 => 120,  227 => 119,  219 => 116,  215 => 114,  211 => 113,  203 => 108,  192 => 100,  185 => 96,  181 => 95,  171 => 88,  164 => 84,  160 => 83,  153 => 79,  148 => 77,  144 => 76,  132 => 67,  125 => 63,  121 => 62,  116 => 60,  111 => 58,  107 => 57,  54 => 6,  48 => 5,  35 => 4,  11 => 3,);
     }
 }
 /* {# src/Musee/BilletterieBundle/Resources/views/Formulaire/index.html.twig #}*/
@@ -383,7 +386,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /*                 <div class="well">*/
 /*                     */
 /*                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}*/
-/*                    */
+/*                    {{ form_row(form._token) }}*/
 /*                     <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>*/
 /*                     {{ form_errors(form) }}*/
 /*                     <div class="form-group">*/
@@ -439,7 +442,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /*                     </div>*/
 /*                     */
 /*                         {% for ligneCommande in form.ligneCommande %}*/
-/*            */
+/*      */
 /*                             */
 /*                         <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>    */
 /*                                      */

@@ -32,17 +32,37 @@ public function addAction(Request $request)
     
     
      $commande = new Commande();  
-       $quantite=$commande->getQuantite();  
-       $visiteur1 = new LigneCommande();
-        $visiteur1->setNom($quantite);
-        $commande->getLigneCommande()->add($visiteur1);
-        //$visiteur2 = new LigneCommande();
-        //$commande->getLigneCommande()->add($visiteur2);
+       
+     $form = $this->createForm(FormBilletterieGeneral::class, $commande);
+
+    
+if ($request->isMethod('POST')) {
+      $form->handleRequest($request);
+      if ($form->isValid()) {
+       //$em = $this->getDoctrine()->getManager();
+       //$em->persist($commande);
+      
+        //$em->flush();
+       // $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+        // On redirige vers la page de visualisation de l'annonce nouvellement créée
+  $quantite=$commande->getQuantite();
+
+  for($i = 1; $i <= $quantite; $i++)
+  {
+         ${'$visiteur_'.$i}= new LigneCommande();
+         $commande->getLigneCommande()->add(${'$visiteur_'.$i});
+    
+  }
         $form = $this->createForm(FormBilletterieGeneral::class, $commande);
-        $form->handleRequest($request);
+        
+        
+        
+        
+//return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $form->createView(), 'init' => $commande->getQuantite(), )); 
+return $this->render('MuseeBilletterieBundle:Formulaire:visiteurs.html.twig', array('form' => $form->createView(), 'init' => 1, )); 
+      }
 
-        if ($form->isValid()) {    echo $quantite;        }
-
+    }
 return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $form->createView(), 'init' => 1, )); 
   
 }

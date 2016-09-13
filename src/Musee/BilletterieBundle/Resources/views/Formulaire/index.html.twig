@@ -55,7 +55,7 @@
                 <div class="well">
                     
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
-                   
+                   {{ form_row(form._token) }}
                     <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>
                     {{ form_errors(form) }}
                     <div class="form-group">
@@ -111,7 +111,7 @@
                     </div>
                     
                         {% for ligneCommande in form.ligneCommande %}
-           
+     
                             
                         <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>    
                                      
