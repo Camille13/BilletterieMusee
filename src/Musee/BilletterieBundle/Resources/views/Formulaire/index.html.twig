@@ -4,7 +4,7 @@
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
     <div class="container-fluid">
-       <div class="navbar navbar-inverse row">
+        <div class="navbar navbar-inverse row">
             <div class="col-lg-12">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">Billetterie du Musée du Louvre</a>
@@ -19,44 +19,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-lg-offset-1"  id="img">
-                <table class="table table-bordered table-condensed">
-                    <legend> Tarifs de viste du Musée du Louvre</legend>
-                    <tr>
-                        <td>Tarif</td>
-                        <td>Conditions</td>
-                        <td>Prix</td>
-                    </tr>
-                    <tr>
-                        <td>Normal</td>
-                        <td>à partir de 12 ans</td>
-                        <td>16,00€</td>
-                    </tr>
-                    <tr>
-                        <td>Enfant</td>
-                        <td>A partir de 4 ans jusqu'à 12 ans (Gratuit pour les moins de 4 ans)</td>
-                        <td>8,00€ </td>
-                    </tr>
-                    <tr>
-                        <td>Sénior</td>
-                        <td>à partir de 60 ans </td>
-                        <td>12,00€</td>
-                    </tr>
-                    <tr>
-                        <td>Réduit</td>
-                        <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif)</td>
-                        <td>10,00€</td>
-                    </tr>
-                </table>
-                <p> Le musée est ouvert tous les jours sauf le mardi et dimanche (et fermé les 1er mai, 1er novembre et 25 décembre et jours fériés). </p>
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>Le Musée du Louvre</h1>
+                <h4>Découvrez le plus grand musée du monde </h4>
             </div>
-            <div class="col-lg-6">
+        </div>
+        <div class="row">
 
-                <div class="well">
+            <div class="col-md-7 col-md-offset-1">
+ 
+                
+                
+                
+                
+                <div class="well col-md-12">
+                    
+                     
+                             <legend> Billetterie en ligne  <p class="text-muted"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>
+
+                    {% if form is defined %}
+                    
+                    
                     
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
-                   {{ form_row(form._token) }}
-                    <legend> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</legend>
+                    {{ form_row(form._token) }}
+                   
                     {{ form_errors(form) }}
                     <div class="form-group">
                         {{ form_label(form.date, "Date de la visite *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
@@ -83,82 +70,119 @@
                         {{ form_label(form.type, "Type *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.type) }}
                         <div class="col-sm-8">
-                            
 
-                                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
 
-                              
-                            </div>  
-                        </div>
-                    
-                            <div class="form-group">
+                            {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+
+
+                        </div>  
+                    </div>
+
+                    <div class="form-group">
                         {{ form_label(form.quantite, "Quantité *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.quantite) }}
                         <div class="col-sm-8">
-                            
 
-                                {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
 
-                              
-                            </div>  
-                        </div>
-                        
+                            {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+
+
+                        </div>  
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-12 ">
-                            {{ form_widget(form.Suivant, {'attr': {'class': 'btn btn-primary center-block'}}) }}
+                            {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }}
 
                         </div>
                     </div>
+
+
+                    {{ form_end(form, {'render_rest': false}) }}
                     
-                        {% for ligneCommande in form.ligneCommande %}
-     
-                            
-                        <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>    
-                                     
-                    <div class="form-group">
-                        {{ form_label(ligneCommande.nom, "Nom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(ligneCommande.nom) }}
-                        <div class="col-sm-8">
-                            {{ form_widget(ligneCommande.nom, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
-   
-                   
-                    <div class="form-group">
-                        {{ form_label(ligneCommande.prenom, "Prénom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(ligneCommande.prenom) }}
-                        <div class="col-sm-8">
-                            {{ form_widget(ligneCommande.prenom, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        {{ form_label(ligneCommande.born, "Date de naissance *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(ligneCommande.born) }}
-                        <div class="col-sm-8">
-                            {{ form_widget(ligneCommande.born, {'attr': {'class': 'form-control'}}) }}
-                        </div>
-                    </div>
-                    <div class="form-group" style="text-align:left;">
-                        {{ form_label(ligneCommande.tarif_reduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        <div class="col-sm-8 ">
-
-                            {{ form_widget(ligneCommande.tarif_reduit, {'attr': {'class': 'left-block'}}) }}
-                            Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture
-                        </div>
-                        {{ form_errors(ligneCommande.tarif_reduit) }}
+                    
                   
-                    </div>
+                    {% else %}
+                        
+                        
+                      Vos billets vous ont été envoyé à l'adresse email 
+                        {% endif %}
                     
-                    
-                    
-                    
-                         {% endfor %}
-             {{ form_end(form, {'render_rest': false}) }}
                 </div>
-            </div>
+                
+                
+                
+                
+         
 
 
-        {% endblock %}
+
+
+                <div class="well col-md-12">
+                    <table class="table table-bordered table-striped ">
+                        <legend> Nos tarifs</legend>
+                        
+                         <thead class="thead-inverse">
+                        <tr>
+                            <th>Tarif</th>
+                            <th>Conditions</th>
+                            <th>Prix</th>
+                        </tr>
+                         </thead>
+                        <tr>
+                            <td>Normal</td>
+                            <td>à partir de 12 ans</td>
+                            <td>16,00€</td>
+                        </tr>
+                        <tr>
+                            <td>Enfant</td>
+                            <td>A partir de 4 ans jusqu'à 12 ans (Gratuit pour les moins de 4 ans)</td>
+                            <td>8,00€ </td>
+                        </tr>
+                        <tr>
+                            <td>Sénior</td>
+                            <td>à partir de 60 ans </td>
+                            <td>12,00€</td>
+                        </tr>
+                        <tr>
+                            <td>Réduit</td>
+                            <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif)</td>
+                            <td>10,00€</td>
+                        </tr>
+                    </table>
+                   
+                </div>
+       
+        </div>
+           
+                
+                <div class="col-md-3" >
+        <div class="well">
+            <legend>Informations pratiques</legend>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8741023651355!2d2.335455315921311!3d48.86061107928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877937b0f%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1474230651863" 
+        width="100%" height="412" frameborder="0" style="border:0" allowfullscreen></iframe>
+        
+        
+        
+        <p><strong>  Adresse :</strong> Musée du Louvre, 75058 Paris - France</p>
+        <p><strong>  Téléphone :</strong> + 33 (0)1 40 20 53 17</p>
+        <p><strong>  Horaires :</strong> Ouvert tous les jours de 9h à 18h sauf le mardi et le dimanche</p>
+        <p><strong>  Fermetures :</strong> Les  1er mai, 1 novembre, 25 décembre et jours fériés</p>
+
+
+
+
+
+</div>
+</div>  
+                
+                
+                
+                
+        </div>
+    
+
+    </div>
+{% endblock %}
 
 

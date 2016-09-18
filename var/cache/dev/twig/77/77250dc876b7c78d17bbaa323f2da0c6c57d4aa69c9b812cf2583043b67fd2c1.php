@@ -17,8 +17,8 @@ class __TwigTemplate_7d17cf5596a67b7c8020141ff264f7fdec92259b2f4a7309ee14c5a582d
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_9393a218e4158e74895bcc3cdbdb67025095b6af86a12be2d244727b0dde48e6 = $this->env->getExtension("native_profiler");
-        $__internal_9393a218e4158e74895bcc3cdbdb67025095b6af86a12be2d244727b0dde48e6->enter($__internal_9393a218e4158e74895bcc3cdbdb67025095b6af86a12be2d244727b0dde48e6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle::Layout.html.twig"));
+        $__internal_43489cf14cfe20b52f1318727a18f7f1f7f8f24154cd364b2152e81ca3438c86 = $this->env->getExtension("native_profiler");
+        $__internal_43489cf14cfe20b52f1318727a18f7f1f7f8f24154cd364b2152e81ca3438c86->enter($__internal_43489cf14cfe20b52f1318727a18f7f1f7f8f24154cd364b2152e81ca3438c86_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle::Layout.html.twig"));
 
         // line 2
         echo "
@@ -34,10 +34,24 @@ class __TwigTemplate_7d17cf5596a67b7c8020141ff264f7fdec92259b2f4a7309ee14c5a582d
     <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css\">
 <link href=\"http://localhost/Symfony/web/bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\">
  <link rel=\"stylesheet\" type=\"text/css\" href=\"http://fonts.googleapis.com/css?family=Dancing+Script\">
+ <link href=\"https://fonts.googleapis.com/css?family=Niconne\" rel=\"stylesheet\"> 
+ <link href=\"https://fonts.googleapis.com/css?family=Lobster+Two\" rel=\"stylesheet\"> 
+ <link href=\"https://fonts.googleapis.com/css?family=Josefin+Slab\" rel=\"stylesheet\"> 
+ <link href=\"https://fonts.googleapis.com/css?family=Great+Vibes\" rel=\"stylesheet\"> 
    <style>
-   .navbar-header a, legend{font-family: \"Dancing Script\";}
-#img{background: #000000 url('../img/museeLouvre.jpg') center center; background-size:cover;}
-
+   .navbar-header a, legend{font-family: \"Great Vibes\"; font-weight:bold; font-size:25px; }
+.container-fluid {background: #000000 url('../img/museeLouvre.jpg') center 50px no-repeat; background-size:cover; height:100%;}
+body{background-color: #222;}
+h1, h4{ text-align:center; text-shadow: 4px 1px rgb(245, 245, 245); }
+h2{ text-align:center; text-shadow: 4px 1px rgb(245, 245, 245); font-family: \"Great Vibes\";}
+h5{text-align:center; }
+legend .text-muted {font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif; font-size:12px; }
+h1{font-family: \"Great Vibes\";  font-weight:bold; text-shadow: 2px 1px rgb(245, 245, 245); font-size:3.5em; margin-bottom: 0; }
+h4{margin-bottom:35px; text-shadow: 1px 1px rgb(245, 245, 245); padding-top:0; margin-top: 0;}
+.well{background-color:rgba(245, 245, 245, 0.8);
+ text-shadow: 1px 1px rgb(245, 245, 245);}
+iframe{padding-bottom:25px; }
+th{text-align: center;}
 </style>
   <body>
   <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
@@ -86,42 +100,42 @@ beforeShowDay: DisableSpecificDates
   } );
   </script>
     ";
-        // line 63
+        // line 77
         $this->displayBlock('body', $context, $blocks);
-        // line 68
+        // line 82
         echo " <script src=\"http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js\"></script>
   </body>
 </html>";
         
-        $__internal_9393a218e4158e74895bcc3cdbdb67025095b6af86a12be2d244727b0dde48e6->leave($__internal_9393a218e4158e74895bcc3cdbdb67025095b6af86a12be2d244727b0dde48e6_prof);
+        $__internal_43489cf14cfe20b52f1318727a18f7f1f7f8f24154cd364b2152e81ca3438c86->leave($__internal_43489cf14cfe20b52f1318727a18f7f1f7f8f24154cd364b2152e81ca3438c86_prof);
 
     }
 
     // line 7
     public function block_title($context, array $blocks = array())
     {
-        $__internal_13fe68fdf42b7d543c4758ef8e6a1dc88bc09f20f77acf5829b0cef1eb6ffda3 = $this->env->getExtension("native_profiler");
-        $__internal_13fe68fdf42b7d543c4758ef8e6a1dc88bc09f20f77acf5829b0cef1eb6ffda3->enter($__internal_13fe68fdf42b7d543c4758ef8e6a1dc88bc09f20f77acf5829b0cef1eb6ffda3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_fc5ed85a9697cdc80c44cae7710edc99a132303ce52d26904b4dbd3fb8afb0fa = $this->env->getExtension("native_profiler");
+        $__internal_fc5ed85a9697cdc80c44cae7710edc99a132303ce52d26904b4dbd3fb8afb0fa->enter($__internal_fc5ed85a9697cdc80c44cae7710edc99a132303ce52d26904b4dbd3fb8afb0fa_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "Musée du Louvre";
         
-        $__internal_13fe68fdf42b7d543c4758ef8e6a1dc88bc09f20f77acf5829b0cef1eb6ffda3->leave($__internal_13fe68fdf42b7d543c4758ef8e6a1dc88bc09f20f77acf5829b0cef1eb6ffda3_prof);
+        $__internal_fc5ed85a9697cdc80c44cae7710edc99a132303ce52d26904b4dbd3fb8afb0fa->leave($__internal_fc5ed85a9697cdc80c44cae7710edc99a132303ce52d26904b4dbd3fb8afb0fa_prof);
 
     }
 
-    // line 63
+    // line 77
     public function block_body($context, array $blocks = array())
     {
-        $__internal_e4d878f9cf125d4f1e78aea3f993cbe9c6978ff0dc6a28bdb4194e25d169fc2a = $this->env->getExtension("native_profiler");
-        $__internal_e4d878f9cf125d4f1e78aea3f993cbe9c6978ff0dc6a28bdb4194e25d169fc2a->enter($__internal_e4d878f9cf125d4f1e78aea3f993cbe9c6978ff0dc6a28bdb4194e25d169fc2a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_fbb3e8f379dfde3372786a8293855d0614fb914b9571a15def628441a591c2a6 = $this->env->getExtension("native_profiler");
+        $__internal_fbb3e8f379dfde3372786a8293855d0614fb914b9571a15def628441a591c2a6->enter($__internal_fbb3e8f379dfde3372786a8293855d0614fb914b9571a15def628441a591c2a6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 64
-        echo "\t
+        // line 78
+        echo "     
 \t
 \t
     ";
         
-        $__internal_e4d878f9cf125d4f1e78aea3f993cbe9c6978ff0dc6a28bdb4194e25d169fc2a->leave($__internal_e4d878f9cf125d4f1e78aea3f993cbe9c6978ff0dc6a28bdb4194e25d169fc2a_prof);
+        $__internal_fbb3e8f379dfde3372786a8293855d0614fb914b9571a15def628441a591c2a6->leave($__internal_fbb3e8f379dfde3372786a8293855d0614fb914b9571a15def628441a591c2a6_prof);
 
     }
 
@@ -132,7 +146,7 @@ beforeShowDay: DisableSpecificDates
 
     public function getDebugInfo()
     {
-        return array (  119 => 64,  113 => 63,  101 => 7,  92 => 68,  90 => 63,  31 => 7,  24 => 2,);
+        return array (  133 => 78,  127 => 77,  115 => 7,  106 => 82,  104 => 77,  31 => 7,  24 => 2,);
     }
 }
 /* {# src/Musee/BilletterieBundle/Resources/views/layout.html.twig #}*/
@@ -146,10 +160,24 @@ beforeShowDay: DisableSpecificDates
 /*     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">*/
 /* <link href="http://localhost/Symfony/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">*/
 /*  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Dancing+Script">*/
+/*  <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet"> */
+/*  <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet"> */
+/*  <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet"> */
+/*  <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> */
 /*    <style>*/
-/*    .navbar-header a, legend{font-family: "Dancing Script";}*/
-/* #img{background: #000000 url('../img/museeLouvre.jpg') center center; background-size:cover;}*/
-/* */
+/*    .navbar-header a, legend{font-family: "Great Vibes"; font-weight:bold; font-size:25px; }*/
+/* .container-fluid {background: #000000 url('../img/museeLouvre.jpg') center 50px no-repeat; background-size:cover; height:100%;}*/
+/* body{background-color: #222;}*/
+/* h1, h4{ text-align:center; text-shadow: 4px 1px rgb(245, 245, 245); }*/
+/* h2{ text-align:center; text-shadow: 4px 1px rgb(245, 245, 245); font-family: "Great Vibes";}*/
+/* h5{text-align:center; }*/
+/* legend .text-muted {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size:12px; }*/
+/* h1{font-family: "Great Vibes";  font-weight:bold; text-shadow: 2px 1px rgb(245, 245, 245); font-size:3.5em; margin-bottom: 0; }*/
+/* h4{margin-bottom:35px; text-shadow: 1px 1px rgb(245, 245, 245); padding-top:0; margin-top: 0;}*/
+/* .well{background-color:rgba(245, 245, 245, 0.8);*/
+/*  text-shadow: 1px 1px rgb(245, 245, 245);}*/
+/* iframe{padding-bottom:25px; }*/
+/* th{text-align: center;}*/
 /* </style>*/
 /*   <body>*/
 /*   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>*/
@@ -198,7 +226,7 @@ beforeShowDay: DisableSpecificDates
 /*   } );*/
 /*   </script>*/
 /*     {% block body %}*/
-/* 	*/
+/*      */
 /* 	*/
 /* 	*/
 /*     {% endblock %}*/

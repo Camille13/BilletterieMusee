@@ -110,6 +110,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::addAction',  '_route' => 'musee_billetterie_form',);
         }
 
+        // edit_form
+        if (0 === strpos($pathinfo, '/edit_form') && preg_match('#^/edit_form/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_form')), array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::editAction',));
+        }
+
         if (0 === strpos($pathinfo, '/platform')) {
             // oc_platform_home
             if ($pathinfo === '/platform') {

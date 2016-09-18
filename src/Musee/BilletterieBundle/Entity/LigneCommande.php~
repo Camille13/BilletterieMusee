@@ -11,31 +11,21 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Musee\BilletterieBundle\Repository\LigneCommandeRepository")
  */
 class LigneCommande
-{
-    /**
+{    
+      /**
+   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande", cascade={"persist"})
+   * @ORM\JoinColumn(nullable=false)
+   */
+    
+private $commande;
+      /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-    
-    
-    
-      /**
-   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande")
-   * @ORM\JoinColumn(nullable=false)
-   */
-    
-private $commande;
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="commande_id", type="integer")
-     */
-    private $commande_id;
-
+private $id;
     /**
      * @var string
      *
@@ -58,23 +48,36 @@ private $commande;
     private $born;
 
     /**
-     * @var bool
+     * @var string
      *
-     * @ORM\Column(name="tarif_reduit", type="boolean")
+     * @ORM\Column(name="tarifReduit", type="string")
      */
     private $tarifReduit;
 
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    
 
+public function addCommande(Commande $commande)
+{
+    if (!$this->tasks->contains($commande)) {
+        $this->tasks->set($commande);
+    }
+}
+    
+    
+    
+    
+     public function setCommande(Commande $commande)
+  {
+    $this->commande = $commande;
+
+    return $this;
+  }
+
+  public function getCommande()
+  {
+    return $this->commande;
+  }
 
     /**
      * Set nom
@@ -172,27 +175,16 @@ private $commande;
         return $this->tarifReduit;
     }
 
-    /**
-     * Set commandeId
-     *
-     * @param integer $commandeId
-     *
-     * @return LigneCommande
-     */
-    public function setCommandeId($commandeId)
-    {
-        $this->commande_id = $commandeId;
-
-        return $this;
-    }
+  
+   
 
     /**
-     * Get commandeId
+     * Get id
      *
      * @return integer
      */
-    public function getCommandeId()
+    public function getId()
     {
-        return $this->commande_id;
+        return $this->id;
     }
 }

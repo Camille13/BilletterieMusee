@@ -19,11 +19,10 @@ class FormBilletterieVisiteur extends AbstractType
 	
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nom',  TextType::class)
-				->add('prenom',  TextType::class)
-				->add('born', DateType::class)
-				->add('tarif_reduit', CheckboxType::class, array('label' => 'Tarif réduit','required' => false,))
-				->add('Valider', SubmitType::class);
+                        $builder->add('nom',  TextType::class, array('required' => true))
+				->add('prenom',  TextType::class, array('required' => true))
+				->add('born', TextType::class, array('required' => true))
+				->add('tarifReduit', CheckboxType::class, array('label' => 'Tarif réduit','required' => false));
         $builder->getForm();
 		
     }

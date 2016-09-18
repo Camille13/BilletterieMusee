@@ -21,44 +21,19 @@ class Commande {
      */
     private $id;
 
-    
-    
-        /**
-     * @var string
-     *
-     * @ORM\Column(name="ligneCommande", type="string", length=255)
-     */
+
+
     private $ligneCommande;
     
     
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255)
-     */
-    private $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="string", length=255)
      */
     private $date;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="born", type="string", length=255)
-     */
-    private $born;
-
+   
     /**
      * @var string
      *
@@ -73,24 +48,14 @@ class Commande {
      */
     private $email;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="token", type="string", length=255)
-     */
-    private $token;
+
+
+  
 
     /**
      * @var string
      *
-     * @ORM\Column(name="prixTotal", type="string", length=255)
-     */
-    private $prixTotal;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="$quantite", type="string", length=255)
+     * @ORM\Column(name="quantite", type="string", length=255)
      */
     private $quantite;
 
@@ -99,6 +64,39 @@ class Commande {
         $this->ligneCommande = new ArrayCollection();
     }
 
+    
+ 
+     public function removeLigneCommande(LigneCommande $ligneCommande)
+    {
+        $this->ligneCommande->removeElement($ligneCommande);
+    }
+    
+    
+        public function addLigneCommande(LigneCommande $ligneCommande)
+    {
+            
+        $ligneCommande->add($this);
+        $this->ligneCommande->add($ligneCommande);
+       
+    }
+    
+
+    
+     public function setLigneCommande($ligneCommande)
+    {
+    
+        $this->ligneCommande=$ligneCommande;
+        return $ligneCommande;
+        
+    }
+
+  
+    
+  
+    
+    
+    
+    
     /**
      * Get id
      *
@@ -220,76 +218,11 @@ class Commande {
         return $this->prixTotal;
     }
 
-    /**
-     * Set born
-     *
-     * @param string $born
-     *
-     * @return Commande
-     */
-    public function setBorn($born) {
-        $this->born = $born;
-
-        return $this;
-    }
-
-    /**
-     * Get born
-     *
-     * @return string
-     */
-    public function getBorn() {
-        return $this->born;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Commande
-     */
-    public function setNom($nom) {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom() {
-        return $this->nom;
-    }
-
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return Commande
-     */
-    public function setPrenom($prenom) {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom() {
-        return $this->prenom;
-    }
-
+   
     /**
      * Set quantite
      *
-     * @param string $quantite
+     * @param string quantite
      *
      * @return Commande
      */
@@ -316,12 +249,7 @@ class Commande {
      *
      * @return Commande
      */
-    public function setLigneCommande($ligneCommande)
-    {
-        $this->ligneCommande = $ligneCommande;
 
-        return $this;
-    }
 
     /**
      * Get ligneCommande

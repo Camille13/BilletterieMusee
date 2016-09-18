@@ -5,3 +5,9 @@ musee_billetterie_home:
 musee_billetterie_form:
     path:    /form
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:add }
+edit_form:
+    path:    /edit_form/{id}
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:edit }
+    requirements:
+        id: \d+  
+    
