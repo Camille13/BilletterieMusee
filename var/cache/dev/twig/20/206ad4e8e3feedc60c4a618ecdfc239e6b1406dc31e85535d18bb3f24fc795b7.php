@@ -22,46 +22,48 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_d14714384282683cc1c9c9f3bf1dd4ca4dfc8b47210a33c969814677bd642f1a = $this->env->getExtension("native_profiler");
-        $__internal_d14714384282683cc1c9c9f3bf1dd4ca4dfc8b47210a33c969814677bd642f1a->enter($__internal_d14714384282683cc1c9c9f3bf1dd4ca4dfc8b47210a33c969814677bd642f1a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle:Formulaire:index.html.twig"));
+        $__internal_c7751f2c87541ef2a825e8437088c872b6094271616565d2b8c6c7b13cb8e1f0 = $this->env->getExtension("native_profiler");
+        $__internal_c7751f2c87541ef2a825e8437088c872b6094271616565d2b8c6c7b13cb8e1f0->enter($__internal_c7751f2c87541ef2a825e8437088c872b6094271616565d2b8c6c7b13cb8e1f0_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle:Formulaire:index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_d14714384282683cc1c9c9f3bf1dd4ca4dfc8b47210a33c969814677bd642f1a->leave($__internal_d14714384282683cc1c9c9f3bf1dd4ca4dfc8b47210a33c969814677bd642f1a_prof);
+        $__internal_c7751f2c87541ef2a825e8437088c872b6094271616565d2b8c6c7b13cb8e1f0->leave($__internal_c7751f2c87541ef2a825e8437088c872b6094271616565d2b8c6c7b13cb8e1f0_prof);
 
     }
 
     // line 4
     public function block_title($context, array $blocks = array())
     {
-        $__internal_7a1bac057f2663d3a02e42837018adb5af87a99b4f2bb7a322200c3e46e19a60 = $this->env->getExtension("native_profiler");
-        $__internal_7a1bac057f2663d3a02e42837018adb5af87a99b4f2bb7a322200c3e46e19a60->enter($__internal_7a1bac057f2663d3a02e42837018adb5af87a99b4f2bb7a322200c3e46e19a60_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_d40df444947fbab6729dab3bbaca15b8a60e9ccd5d5c8d0d3f5c3a9156a0432a = $this->env->getExtension("native_profiler");
+        $__internal_d40df444947fbab6729dab3bbaca15b8a60e9ccd5d5c8d0d3f5c3a9156a0432a->enter($__internal_d40df444947fbab6729dab3bbaca15b8a60e9ccd5d5c8d0d3f5c3a9156a0432a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         $this->displayParentBlock("title", $context, $blocks);
         echo " - Billetterie ";
         
-        $__internal_7a1bac057f2663d3a02e42837018adb5af87a99b4f2bb7a322200c3e46e19a60->leave($__internal_7a1bac057f2663d3a02e42837018adb5af87a99b4f2bb7a322200c3e46e19a60_prof);
+        $__internal_d40df444947fbab6729dab3bbaca15b8a60e9ccd5d5c8d0d3f5c3a9156a0432a->leave($__internal_d40df444947fbab6729dab3bbaca15b8a60e9ccd5d5c8d0d3f5c3a9156a0432a_prof);
 
     }
 
     // line 5
     public function block_body($context, array $blocks = array())
     {
-        $__internal_653ab0b13eeb04bde60b317b96b8331ab6bb724e4af75ca62b25543175b33760 = $this->env->getExtension("native_profiler");
-        $__internal_653ab0b13eeb04bde60b317b96b8331ab6bb724e4af75ca62b25543175b33760->enter($__internal_653ab0b13eeb04bde60b317b96b8331ab6bb724e4af75ca62b25543175b33760_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_aba3e3e64930046a02ae17aef1ff6db74096e44597bcb6b75e1018264fa7e9c6 = $this->env->getExtension("native_profiler");
+        $__internal_aba3e3e64930046a02ae17aef1ff6db74096e44597bcb6b75e1018264fa7e9c6->enter($__internal_aba3e3e64930046a02ae17aef1ff6db74096e44597bcb6b75e1018264fa7e9c6_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
         echo "    <div class=\"container-fluid\">
-        <div class=\"navbar navbar-inverse row\">
+        <div class=\"navbar navbar-inverse row \">
             <div class=\"col-lg-12\">
                 <div class=\"navbar-header\">
-                    <a class=\"navbar-brand\" href=\"#\">Billetterie du Musée du Louvre</a>
+                    <a class=\"navbar-brand\" href=\"#\">Musée du Louvre Paris</a>
                 </div>
-                <ul class=\"nav navbar-nav\">
+                <ul class=\"nav navbar-nav \">
 
-                    <li class=\"active\"> <a href=\"#\">Accueil</a> </li>
+                    <li class=\"active\"> <a href=\"#\" class=\"glyphicon glyphicon-home\"></a> </li>
 
-                    <li> <a href=\"#\">Tarifs</a> </li>
+                    <li> <a href=\"#billetterie\">Billetterie</a> </li>
+                    <li> <a href=\"#tarifs\">Tarifs</a> </li>
+                    <li> <a href=\"#infos\">Informations pratiques</a> </li>
                 </ul>
 
             </div>
@@ -80,45 +82,45 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
                 
                 
                 
-                <div class=\"well col-md-12\">
+                <div class=\"well col-md-12\" id=\"billetterie\">
                     
                      
                              <legend> Billetterie en ligne  <p class=\"text-muted\"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>
 
                     ";
-        // line 40
+        // line 42
         if (array_key_exists("form", $context)) {
-            // line 41
+            // line 43
             echo "                    
                     
                     
                     ";
-            // line 44
+            // line 46
             echo             $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start', array("attr" => array("class" => "form-horizontal", "method" => "GET")));
             echo "
                     ";
-            // line 45
+            // line 47
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'row');
             echo "
                    
                     ";
-            // line 47
+            // line 49
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'errors');
             echo "
                     <div class=\"form-group\">
                         ";
-            // line 49
+            // line 51
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "date", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Date de la visite *"));
             echo "
                         ";
-            // line 50
+            // line 52
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "date", array()), 'errors');
             echo "
                         <div class=\"col-sm-8\">
                             <div class=\"input-group date\" data-provide=\"datepicker\">
 
                                 ";
-            // line 54
+            // line 56
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "date", array()), 'widget', array("attr" => array("class" => "form-control")));
             echo "
 
@@ -130,34 +132,34 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
                     </div>
                     <div class=\"form-group\">
                         ";
-            // line 63
+            // line 65
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Adresse email *"));
             echo "
                         ";
-            // line 64
+            // line 66
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'errors');
             echo "
                         <div class=\"col-sm-8\">
                             ";
-            // line 66
+            // line 68
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'widget', array("attr" => array("class" => "form-control")));
             echo "
                         </div>
                     </div>
                     <div class=\"form-group\">
                         ";
-            // line 70
+            // line 72
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "type", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Type *"));
             echo "
                         ";
-            // line 71
+            // line 73
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "type", array()), 'errors');
             echo "
                         <div class=\"col-sm-8\">
 
 
                             ";
-            // line 75
+            // line 77
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "type", array()), 'widget', array("attr" => array("class" => "form-control")));
             echo "
 
@@ -167,18 +169,18 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
                     <div class=\"form-group\">
                         ";
-            // line 82
+            // line 84
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "quantite", array()), 'label', array("label_attr" => array("class" => "col-sm-4 control-label"), "label" => "Quantité *"));
             echo "
                         ";
-            // line 83
+            // line 85
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "quantite", array()), 'errors');
             echo "
                         <div class=\"col-sm-8\">
 
 
                             ";
-            // line 87
+            // line 89
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "quantite", array()), 'widget', array("attr" => array("class" => "form-control")));
             echo "
 
@@ -189,7 +191,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
                     <div class=\"form-group\">
                         <div class=\"col-sm-12 \">
                             ";
-            // line 95
+            // line 97
             echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "Valider", array()), 'widget', array("attr" => array("class" => "btn btn-primary center-block")));
             echo "
 
@@ -198,7 +200,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
 
                     ";
-            // line 101
+            // line 103
             echo             $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end', array("render_rest" => false));
             echo "
                     
@@ -206,13 +208,13 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
                   
                     ";
         } else {
-            // line 106
+            // line 108
             echo "                        
                         
                       Vos billets vous ont été envoyé à l'adresse email 
                         ";
         }
-        // line 110
+        // line 112
         echo "                    
                 </div>
                 
@@ -224,7 +226,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
 
 
-                <div class=\"well col-md-12\">
+                <div class=\"well col-md-12\" id=\"tarifs\">
                     <table class=\"table table-bordered table-striped \">
                         <legend> Nos tarifs</legend>
                         
@@ -252,7 +254,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
                         </tr>
                         <tr>
                             <td>Réduit</td>
-                            <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif)</td>
+                            <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif(s))</td>
                             <td>10,00€</td>
                         </tr>
                     </table>
@@ -262,7 +264,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
         </div>
            
                 
-                <div class=\"col-md-3\" >
+                <div class=\"col-md-3\" id=\"infos\">
         <div class=\"well\">
             <legend>Informations pratiques</legend>
 <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8741023651355!2d2.335455315921311!3d48.86061107928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877937b0f%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1474230651863\" 
@@ -291,7 +293,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
     </div>
 ";
         
-        $__internal_653ab0b13eeb04bde60b317b96b8331ab6bb724e4af75ca62b25543175b33760->leave($__internal_653ab0b13eeb04bde60b317b96b8331ab6bb724e4af75ca62b25543175b33760_prof);
+        $__internal_aba3e3e64930046a02ae17aef1ff6db74096e44597bcb6b75e1018264fa7e9c6->leave($__internal_aba3e3e64930046a02ae17aef1ff6db74096e44597bcb6b75e1018264fa7e9c6_prof);
 
     }
 
@@ -307,7 +309,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 
     public function getDebugInfo()
     {
-        return array (  216 => 110,  210 => 106,  202 => 101,  193 => 95,  182 => 87,  175 => 83,  171 => 82,  161 => 75,  154 => 71,  150 => 70,  143 => 66,  138 => 64,  134 => 63,  122 => 54,  115 => 50,  111 => 49,  106 => 47,  101 => 45,  97 => 44,  92 => 41,  90 => 40,  54 => 6,  48 => 5,  35 => 4,  11 => 3,);
+        return array (  218 => 112,  212 => 108,  204 => 103,  195 => 97,  184 => 89,  177 => 85,  173 => 84,  163 => 77,  156 => 73,  152 => 72,  145 => 68,  140 => 66,  136 => 65,  124 => 56,  117 => 52,  113 => 51,  108 => 49,  103 => 47,  99 => 46,  94 => 43,  92 => 42,  54 => 6,  48 => 5,  35 => 4,  11 => 3,);
     }
 }
 /* {# src/Musee/BilletterieBundle/Resources/views/Formulaire/index.html.twig #}*/
@@ -316,16 +318,18 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /* {% block title %}{{ parent() }} - Billetterie {% endblock %}*/
 /* {% block body %}*/
 /*     <div class="container-fluid">*/
-/*         <div class="navbar navbar-inverse row">*/
+/*         <div class="navbar navbar-inverse row ">*/
 /*             <div class="col-lg-12">*/
 /*                 <div class="navbar-header">*/
-/*                     <a class="navbar-brand" href="#">Billetterie du Musée du Louvre</a>*/
+/*                     <a class="navbar-brand" href="#">Musée du Louvre Paris</a>*/
 /*                 </div>*/
-/*                 <ul class="nav navbar-nav">*/
+/*                 <ul class="nav navbar-nav ">*/
 /* */
-/*                     <li class="active"> <a href="#">Accueil</a> </li>*/
+/*                     <li class="active"> <a href="#" class="glyphicon glyphicon-home"></a> </li>*/
 /* */
-/*                     <li> <a href="#">Tarifs</a> </li>*/
+/*                     <li> <a href="#billetterie">Billetterie</a> </li>*/
+/*                     <li> <a href="#tarifs">Tarifs</a> </li>*/
+/*                     <li> <a href="#infos">Informations pratiques</a> </li>*/
 /*                 </ul>*/
 /* */
 /*             </div>*/
@@ -344,7 +348,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /*                 */
 /*                 */
 /*                 */
-/*                 <div class="well col-md-12">*/
+/*                 <div class="well col-md-12" id="billetterie">*/
 /*                     */
 /*                      */
 /*                              <legend> Billetterie en ligne  <p class="text-muted"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>*/
@@ -430,7 +434,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /* */
 /* */
 /* */
-/*                 <div class="well col-md-12">*/
+/*                 <div class="well col-md-12" id="tarifs">*/
 /*                     <table class="table table-bordered table-striped ">*/
 /*                         <legend> Nos tarifs</legend>*/
 /*                         */
@@ -458,7 +462,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /*                         </tr>*/
 /*                         <tr>*/
 /*                             <td>Réduit</td>*/
-/*                             <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif)</td>*/
+/*                             <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif(s))</td>*/
 /*                             <td>10,00€</td>*/
 /*                         </tr>*/
 /*                     </table>*/
@@ -468,7 +472,7 @@ class __TwigTemplate_f52f630323f9cd5064df29ce60afda73b1ced0b2d1c78a6cdb25eacd06b
 /*         </div>*/
 /*            */
 /*                 */
-/*                 <div class="col-md-3" >*/
+/*                 <div class="col-md-3" id="infos">*/
 /*         <div class="well">*/
 /*             <legend>Informations pratiques</legend>*/
 /* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8741023651355!2d2.335455315921311!3d48.86061107928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877937b0f%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1474230651863" */

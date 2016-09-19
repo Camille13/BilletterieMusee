@@ -3,6 +3,6 @@
 
 services:
 
-    musee_billetterie.formulaire:
+    musee_billetterie.prix:
 
-        class: Musee\BilletterieBundle\Formulaire\MuseeFormulaire
+        class: Musee\BilletterieBundle\Services\Prix

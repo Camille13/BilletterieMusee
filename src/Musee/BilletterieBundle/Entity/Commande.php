@@ -242,14 +242,6 @@ class Commande {
     }
 
 
-    /**
-     * Set ligneCommande
-     *
-     * @param string $ligneCommande
-     *
-     * @return Commande
-     */
-
 
     /**
      * Get ligneCommande

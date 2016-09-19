@@ -48,25 +48,33 @@ private $id;
     private $born;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="tarifReduit", type="string")
+     * @ORM\Column(name="tarifReduit", type="boolean")
      */
     private $tarifReduit;
 
-
+/**
+     * @var int
+     *
+     * @ORM\Column(name="tarif", type="integer")
+     */
+    private $tarif;
     
 
+    
+  
+
+
+    
 public function addCommande(Commande $commande)
 {
-    if (!$this->tasks->contains($commande)) {
-        $this->tasks->set($commande);
+    if (!$this->commande->contains($commande)) {
+        $this->commande->set($commande);
     }
 }
     
-    
-    
-    
+      
      public function setCommande(Commande $commande)
   {
     $this->commande = $commande;

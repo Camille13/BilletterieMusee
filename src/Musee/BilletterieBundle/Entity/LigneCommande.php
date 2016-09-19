@@ -48,15 +48,25 @@ private $id;
     private $born;
 
     /**
-     * @var string
+     * @var bool
      *
-     * @ORM\Column(name="tarifReduit", type="string")
+     * @ORM\Column(name="tarifReduit", type="boolean")
      */
     private $tarifReduit;
 
-
+/**
+     * @var int
+     *
+     * @ORM\Column(name="tarif", type="integer")
+     */
+    private $tarif=0;
     
 
+    
+  
+
+
+    
 public function addCommande(Commande $commande)
 {
     if (!$this->commande->contains($commande)) {
@@ -64,9 +74,7 @@ public function addCommande(Commande $commande)
     }
 }
     
-    
-    
-    
+      
      public function setCommande(Commande $commande)
   {
     $this->commande = $commande;
@@ -186,5 +194,29 @@ public function addCommande(Commande $commande)
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set tarif
+     *
+     * @param integer $tarif
+     *
+     * @return LigneCommande
+     */
+    public function setTarif($tarif)
+    {
+        $this->tarif = $tarif;
+
+        return $this;
+    }
+
+    /**
+     * Get tarif
+     *
+     * @return integer
+     */
+    public function getTarif()
+    {
+        return $this->tarif;
     }
 }
