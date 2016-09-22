@@ -17,8 +17,8 @@ class __TwigTemplate_7d17cf5596a67b7c8020141ff264f7fdec92259b2f4a7309ee14c5a582d
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_5d5f2afe961dc31bd5276e4818abe83b351717289b4cc879a00332b0348403a5 = $this->env->getExtension("native_profiler");
-        $__internal_5d5f2afe961dc31bd5276e4818abe83b351717289b4cc879a00332b0348403a5->enter($__internal_5d5f2afe961dc31bd5276e4818abe83b351717289b4cc879a00332b0348403a5_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle::Layout.html.twig"));
+        $__internal_cc1e30cf5b8a9dbd3b47f8fed57c420ad776c8578595e802e3b504bba6892eb3 = $this->env->getExtension("native_profiler");
+        $__internal_cc1e30cf5b8a9dbd3b47f8fed57c420ad776c8578595e802e3b504bba6892eb3->enter($__internal_cc1e30cf5b8a9dbd3b47f8fed57c420ad776c8578595e802e3b504bba6892eb3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "MuseeBilletterieBundle::Layout.html.twig"));
 
         // line 2
         echo "
@@ -48,7 +48,7 @@ class __TwigTemplate_7d17cf5596a67b7c8020141ff264f7fdec92259b2f4a7309ee14c5a582d
   <script>
   
   
-  
+
  
 function DisableSpecificDates(date) {
  var m = date.getMonth();
@@ -61,7 +61,6 @@ if(day == 2){  return [false] ;  } else {  return [true] ; }
 }}}}
 
 \$( function() {
-
 \$( \"#form_billetterie_general_date\" ).datepicker({
 altField: \"#form_billetterie_general_date\",
 closeText: 'Fermer',
@@ -81,50 +80,70 @@ maxDate: \"+12M +0D\",
 beforeShowDay: DisableSpecificDates
 });
 
-   
-   
-   
-\t
-
-  } );
+   } );
   </script>
-    ";
-        // line 66
+   <div class=\"container-fluid\">
+     <div class=\"navbar navbar-inverse row \">
+            <div class=\"col-lg-12\">
+                <div class=\"navbar-header\">
+                    <a class=\"navbar-brand\" href=\"#\">Musée du Louvre Paris</a>
+                </div>
+                <ul class=\"nav navbar-nav \">
+
+                    <li class=\"active\"> <a href=\"#\" class=\"glyphicon glyphicon-home\"></a> </li>
+
+                    <li> <a href=\"#billetterie\">Billetterie</a> </li>
+                    <li> <a href=\"#tarifs\">Tarifs</a> </li>
+                    <li> <a href=\"#infos\">Informations pratiques</a> </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class=\"row\">
+            <div class=\"col-lg-6 col-lg-offset-3\">
+                <h1>Le Musée du Louvre</h1>
+                <h4>Découvrez le plus grand musée du monde </h4>
+            </div>
+        </div>
+ 
+  
+  ";
+        // line 85
         $this->displayBlock('body', $context, $blocks);
-        // line 71
-        echo " <script src=\"http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js\"></script>
+        // line 88
+        echo "    
+  </div>
+ <script src=\"http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js\"></script>
   </body>
 </html>";
         
-        $__internal_5d5f2afe961dc31bd5276e4818abe83b351717289b4cc879a00332b0348403a5->leave($__internal_5d5f2afe961dc31bd5276e4818abe83b351717289b4cc879a00332b0348403a5_prof);
+        $__internal_cc1e30cf5b8a9dbd3b47f8fed57c420ad776c8578595e802e3b504bba6892eb3->leave($__internal_cc1e30cf5b8a9dbd3b47f8fed57c420ad776c8578595e802e3b504bba6892eb3_prof);
 
     }
 
     // line 7
     public function block_title($context, array $blocks = array())
     {
-        $__internal_4d1d8fb8cf55295cb850858eae5ae3de1a03f0d031820e859ebdbabf61ff24ab = $this->env->getExtension("native_profiler");
-        $__internal_4d1d8fb8cf55295cb850858eae5ae3de1a03f0d031820e859ebdbabf61ff24ab->enter($__internal_4d1d8fb8cf55295cb850858eae5ae3de1a03f0d031820e859ebdbabf61ff24ab_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_99fae94a696085881eac84cf2652f850440298576f476b2e029918e1bd0e1be8 = $this->env->getExtension("native_profiler");
+        $__internal_99fae94a696085881eac84cf2652f850440298576f476b2e029918e1bd0e1be8->enter($__internal_99fae94a696085881eac84cf2652f850440298576f476b2e029918e1bd0e1be8_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "Musée du Louvre";
         
-        $__internal_4d1d8fb8cf55295cb850858eae5ae3de1a03f0d031820e859ebdbabf61ff24ab->leave($__internal_4d1d8fb8cf55295cb850858eae5ae3de1a03f0d031820e859ebdbabf61ff24ab_prof);
+        $__internal_99fae94a696085881eac84cf2652f850440298576f476b2e029918e1bd0e1be8->leave($__internal_99fae94a696085881eac84cf2652f850440298576f476b2e029918e1bd0e1be8_prof);
 
     }
 
-    // line 66
+    // line 85
     public function block_body($context, array $blocks = array())
     {
-        $__internal_f16911ffed1e336a3e75353dba7174b0fcc2b0a50b7d977ab52f01c6c9f5b48f = $this->env->getExtension("native_profiler");
-        $__internal_f16911ffed1e336a3e75353dba7174b0fcc2b0a50b7d977ab52f01c6c9f5b48f->enter($__internal_f16911ffed1e336a3e75353dba7174b0fcc2b0a50b7d977ab52f01c6c9f5b48f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_5a75ae068c8bed4dcfe7b52a189966248968a0d804320473914b68f46c8791a2 = $this->env->getExtension("native_profiler");
+        $__internal_5a75ae068c8bed4dcfe7b52a189966248968a0d804320473914b68f46c8791a2->enter($__internal_5a75ae068c8bed4dcfe7b52a189966248968a0d804320473914b68f46c8791a2_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
-        // line 67
-        echo "     
-\t
-\t
+        // line 86
+        echo "
     ";
         
-        $__internal_f16911ffed1e336a3e75353dba7174b0fcc2b0a50b7d977ab52f01c6c9f5b48f->leave($__internal_f16911ffed1e336a3e75353dba7174b0fcc2b0a50b7d977ab52f01c6c9f5b48f_prof);
+        $__internal_5a75ae068c8bed4dcfe7b52a189966248968a0d804320473914b68f46c8791a2->leave($__internal_5a75ae068c8bed4dcfe7b52a189966248968a0d804320473914b68f46c8791a2_prof);
 
     }
 
@@ -135,7 +154,7 @@ beforeShowDay: DisableSpecificDates
 
     public function getDebugInfo()
     {
-        return array (  122 => 67,  116 => 66,  104 => 7,  95 => 71,  93 => 66,  31 => 7,  24 => 2,);
+        return array (  143 => 86,  137 => 85,  125 => 7,  114 => 88,  112 => 85,  31 => 7,  24 => 2,);
     }
 }
 /* {# src/Musee/BilletterieBundle/Resources/views/layout.html.twig #}*/
@@ -163,7 +182,7 @@ beforeShowDay: DisableSpecificDates
 /*   <script>*/
 /*   */
 /*   */
-/*   */
+/* */
 /*  */
 /* function DisableSpecificDates(date) {*/
 /*  var m = date.getMonth();*/
@@ -176,7 +195,6 @@ beforeShowDay: DisableSpecificDates
 /* }}}}*/
 /* */
 /* $( function() {*/
-/* */
 /* $( "#form_billetterie_general_date" ).datepicker({*/
 /* altField: "#form_billetterie_general_date",*/
 /* closeText: 'Fermer',*/
@@ -196,18 +214,38 @@ beforeShowDay: DisableSpecificDates
 /* beforeShowDay: DisableSpecificDates*/
 /* });*/
 /* */
-/*    */
-/*    */
-/*    */
-/* 	*/
-/* */
-/*   } );*/
+/*    } );*/
 /*   </script>*/
-/*     {% block body %}*/
-/*      */
-/* 	*/
-/* 	*/
+/*    <div class="container-fluid">*/
+/*      <div class="navbar navbar-inverse row ">*/
+/*             <div class="col-lg-12">*/
+/*                 <div class="navbar-header">*/
+/*                     <a class="navbar-brand" href="#">Musée du Louvre Paris</a>*/
+/*                 </div>*/
+/*                 <ul class="nav navbar-nav ">*/
+/* */
+/*                     <li class="active"> <a href="#" class="glyphicon glyphicon-home"></a> </li>*/
+/* */
+/*                     <li> <a href="#billetterie">Billetterie</a> </li>*/
+/*                     <li> <a href="#tarifs">Tarifs</a> </li>*/
+/*                     <li> <a href="#infos">Informations pratiques</a> </li>*/
+/*                 </ul>*/
+/* */
+/*             </div>*/
+/*         </div>*/
+/*         <div class="row">*/
+/*             <div class="col-lg-6 col-lg-offset-3">*/
+/*                 <h1>Le Musée du Louvre</h1>*/
+/*                 <h4>Découvrez le plus grand musée du monde </h4>*/
+/*             </div>*/
+/*         </div>*/
+/*  */
+/*   */
+/*   {% block body %}*/
+/* */
 /*     {% endblock %}*/
+/*     */
+/*   </div>*/
 /*  <script src="http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js"></script>*/
 /*   </body>*/
 /* </html>*/

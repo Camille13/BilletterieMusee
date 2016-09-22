@@ -6,3 +6,7 @@ services:
     musee_billetterie.prix:
 
         class: Musee\BilletterieBundle\Services\Prix
+        
+    musee_billetterie.stripe:
+
+        class: Musee\BilletterieBundle\Services\Stripe

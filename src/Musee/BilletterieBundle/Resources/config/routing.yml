@@ -10,4 +10,10 @@ edit_form:
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:edit }
     requirements:
         id: \d+  
-    
+visiteurs_form:
+    path:    /visiteurs/{date}/{quantite}/{email}
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:addVisiteurs }
+    requirements:
+        date: .+
+        quantite: \d+ 
+        email: .+

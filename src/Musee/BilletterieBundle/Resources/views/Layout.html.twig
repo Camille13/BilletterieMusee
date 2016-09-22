@@ -23,7 +23,7 @@
   <script>
   
   
-  
+
  
 function DisableSpecificDates(date) {
  var m = date.getMonth();
@@ -36,7 +36,6 @@ if(day == 2){  return [false] ;  } else {  return [true] ; }
 }}}}
 
 $( function() {
-
 $( "#form_billetterie_general_date" ).datepicker({
 altField: "#form_billetterie_general_date",
 closeText: 'Fermer',
@@ -56,18 +55,38 @@ maxDate: "+12M +0D",
 beforeShowDay: DisableSpecificDates
 });
 
-   
-   
-   
-	
-
-  } );
+   } );
   </script>
-    {% block body %}
-     
-	
-	
+   <div class="container-fluid">
+     <div class="navbar navbar-inverse row ">
+            <div class="col-lg-12">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Musée du Louvre Paris</a>
+                </div>
+                <ul class="nav navbar-nav ">
+
+                    <li class="active"> <a href="#" class="glyphicon glyphicon-home"></a> </li>
+
+                    <li> <a href="#billetterie">Billetterie</a> </li>
+                    <li> <a href="#tarifs">Tarifs</a> </li>
+                    <li> <a href="#infos">Informations pratiques</a> </li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3">
+                <h1>Le Musée du Louvre</h1>
+                <h4>Découvrez le plus grand musée du monde </h4>
+            </div>
+        </div>
+ 
+  
+  {% block body %}
+
     {% endblock %}
+    
+  </div>
  <script src="http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>

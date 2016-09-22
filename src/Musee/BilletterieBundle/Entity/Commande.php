@@ -48,7 +48,12 @@ class Commande {
      */
     private $email;
 
-
+/**
+     * @var int
+     *
+     * @ORM\Column(name="prixTotal", type="integer")
+     */
+    private $prixTotal=0;
 
   
 

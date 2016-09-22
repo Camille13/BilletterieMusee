@@ -48,7 +48,12 @@ class Commande {
      */
     private $email;
 
-
+/**
+     * @var int
+     *
+     * @ORM\Column(name="prixTotal", type="integer")
+     */
+    private $prixTotal=0;
 
   
 
@@ -241,14 +246,6 @@ class Commande {
         return $this->quantite;
     }
 
-
-    /**
-     * Set ligneCommande
-     *
-     * @param string $ligneCommande
-     *
-     * @return Commande
-     */
 
 
     /**
