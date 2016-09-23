@@ -3,175 +3,67 @@
 {% extends "MuseeBilletterieBundle::Layout.html.twig" %}
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
-
-       
-        
-        
-      
-        
-        
-        
-        
-        
-        <div class="row">
-
-            <div class="col-md-7 col-md-offset-1">
- 
-                
-                
-                
-                
-                <div class="well col-md-12" id="billetterie">
-                    
-                     
-                             <legend> Billetterie en ligne  <p class="text-muted"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>
-
-                    {% if form is defined %}
-                    
-                    
-                    
+    <div class="row">
+        <div class="col-md-7 col-md-offset-1">
+            <div class="well col-md-12" id="billetterie">
+                <legend> Billetterie en ligne  <p class="text-muted"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>
+                {% if form is defined %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
                     {{ form_row(form._token) }}
-                   
                     {{ form_errors(form) }}
                     <div class="form-group">
                         {{ form_label(form.date, "Date de la visite *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(form.date) }}
                         <div class="col-sm-8">
-                            <div class="input-group date" data-provide="datepicker">
-
-                                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
-
-                                <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                </div>
-                            </div>  
+                            <div class="input-group date" data-provide="datepicker">{{ form_widget(form.date, {'attr': {'class': 'form-control', 'readonly': 'readonly'}}) }}<div class="input-group-addon"><span class="glyphicon glyphicon-th"></span></div></div>
                         </div>
                     </div>
+                    <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.date) }}</div></div>
                     <div class="form-group">
                         {{ form_label(form.email, "Adresse email *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.email) }}
-                        <div class="col-sm-8">
-                            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
-                        </div>
+                        <div class="col-sm-8">{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
                     </div>
                     <div class="form-group">
                         {{ form_label(form.type, "Type *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.type) }}
                         <div class="col-sm-8">
-
-
                             {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
-
-
-                        </div>  
+                        </div>
                     </div>
-
                     <div class="form-group">
                         {{ form_label(form.quantite, "Quantité *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.quantite) }}
-                        <div class="col-sm-8">
-
-
-                            {{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
-
-
-                        </div>  
+                        <div class="col-sm-8">{{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }} </div>
                     </div>
 
-                    <div class="form-group">
-                        <div class="col-sm-12 ">
-                            {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }}
-
-                        </div>
-                    </div>
-
-
+                    <div class="form-group"><div class="col-sm-12 ">{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }} </div></div>
                     {{ form_end(form, {'render_rest': false}) }}
-                    
-                    
-                  
-                    {% else %}
-                        
-                        
-                      Vos billets vous ont été envoyé à l'adresse email 
-                        {% endif %}
-                    
-                </div>
-                
-                
-                
-                
-         
-
-
-
-
-                <div class="well col-md-12" id="tarifs">
-                    <table class="table table-bordered table-striped ">
-                        <legend> Nos tarifs</legend>
-                        
-                         <thead class="thead-inverse">
-                        <tr>
-                            <th>Tarif</th>
-                            <th>Conditions</th>
-                            <th>Prix</th>
-                        </tr>
-                         </thead>
-                        <tr>
-                            <td>Normal</td>
-                            <td>à partir de 12 ans</td>
-                            <td>16,00€</td>
-                        </tr>
-                        <tr>
-                            <td>Enfant</td>
-                            <td>A partir de 4 ans jusqu'à 12 ans (Gratuit pour les moins de 4 ans)</td>
-                            <td>8,00€ </td>
-                        </tr>
-                        <tr>
-                            <td>Sénior</td>
-                            <td>à partir de 60 ans </td>
-                            <td>12,00€</td>
-                        </tr>
-                        <tr>
-                            <td>Réduit</td>
-                            <td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif(s))</td>
-                            <td>10,00€</td>
-                        </tr>
-                    </table>
-                   
-                </div>
-       
+                {% else %}
+                    Vos billets vous ont été envoyé à l'adresse email
+                {% endif %}
+            </div>
+            <div class="well col-md-12" id="tarifs">
+                <table class="table table-bordered table-striped ">
+                    <legend> Nos tarifs</legend>
+                    <thead class="thead-inverse"><tr><th>Tarif</th><th>Conditions</th><th>Prix</th></tr></thead>
+                    <tr><td>Normal</td><td>à partir de 12 ans</td><td>16,00€</td></tr>
+                    <tr><td>Enfant</td><td>A partir de 4 ans jusqu'à 12 ans (Gratuit pour les moins de 4 ans)</td><td>8,00€ </td></tr>
+                    <tr><td>Sénior</td><td>à partir de 60 ans </td><td>12,00€</td></tr>
+                    <tr><td>Réduit</td><td>Etudiant, employé du musée, d'un service du Ministère de la Culture, militaire (sur présentation de justificatif(s))</td><td>10,00€</td></tr>
+                </table>
+            </div>
         </div>
-           
-                
-                <div class="col-md-3" id="infos">
-        <div class="well">
-            <legend>Informations pratiques</legend>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8741023651355!2d2.335455315921311!3d48.86061107928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877937b0f%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1474230651863" 
-        width="100%" height="412" frameborder="0" style="border:0" allowfullscreen></iframe>
-        
-        
-        
-        <p><strong>  Adresse :</strong> Musée du Louvre, 75058 Paris - France</p>
-        <p><strong>  Téléphone :</strong> + 33 (0)1 40 20 53 17</p>
-        <p><strong>  Horaires :</strong> Ouvert tous les jours de 9h à 18h sauf le mardi et le dimanche</p>
-        <p><strong>  Fermetures :</strong> Les  1er mai, 1 novembre, 25 décembre et jours fériés</p>
-
-
-
-
-
-</div>
-</div>  
-                
-                
-                
-                
+        <div class="col-md-3" id="infos">
+            <div class="well">
+                <legend>Informations pratiques</legend>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.8741023651355!2d2.335455315921311!3d48.86061107928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d877937b0f%3A0xb975fcfa192f84d4!2sMus%C3%A9e+du+Louvre!5e0!3m2!1sfr!2sfr!4v1474230651863"
+                        width="100%" height="412" frameborder="0" style="border:0" allowfullscreen></iframe>
+                <p><strong>  Adresse :</strong> Musée du Louvre, 75058 Paris - France</p>
+                <p><strong>  Téléphone :</strong> + 33 (0)1 40 20 53 17</p>
+                <p><strong>  Horaires :</strong> Ouvert tous les jours de 9h à 18h sauf le mardi et le dimanche</p>
+                <p><strong>  Fermetures :</strong> Les  1er mai, 1 novembre, 25 décembre et jours fériés</p>
+            </div>
         </div>
-    
-
-   
+    </div>
 {% endblock %}
-
 

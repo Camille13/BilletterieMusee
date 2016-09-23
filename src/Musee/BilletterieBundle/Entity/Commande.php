@@ -3,12 +3,17 @@
 namespace Musee\BilletterieBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Musee\BilletterieBundle\Services\Validator\DateReservation;
+
 
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="Musee\BilletterieBundle\Repository\CommandeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande {
 
@@ -28,8 +33,13 @@ class Commande {
     
     /**
      * @var string
-     *
      * @ORM\Column(name="date", type="string", length=255)
+     * @DateReservation{message="dddddd"}
+     * @Assert\Regex(
+     *     pattern     = "/^[0-3][0-9]-[0-1][0-9]-[2][0-9][0-9][0-9]+$/i",
+     *     htmlPattern = "^[0-3][0-9]-[0-1][0-9]-[2][0-9][0-9][0-9]+$",
+     *  message = "La date '{{ value }}' n'est pas valide. Format jj-mm-yy")
+)
      */
     private $date;
 
@@ -45,6 +55,9 @@ class Commande {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(
+     *     message = "L adresse email '{{ value }}' n'est pas valide",
+     *     checkMX = true)
      */
     private $email;
 
@@ -54,8 +67,14 @@ class Commande {
      * @ORM\Column(name="prixTotal", type="integer")
      */
     private $prixTotal=0;
-
-  
+    
+    
+    /**
+      * @var bool
+      * 
+      * @ORM\Column(name="paiement", type="boolean")
+      */
+    private $paiement=false;
 
     /**
      * @var string
@@ -256,5 +275,29 @@ class Commande {
     public function getLigneCommande()
     {
         return $this->ligneCommande;
+    }
+
+    /**
+     * Set paiement
+     *
+     * @param boolean $paiement
+     *
+     * @return Commande
+     */
+    public function setPaiement($paiement)
+    {
+        $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Get paiement
+     *
+     * @return boolean
+     */
+    public function getPaiement()
+    {
+        return $this->paiement;
     }
 }

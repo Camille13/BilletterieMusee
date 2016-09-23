@@ -10,9 +10,35 @@ use Musee\BilletterieBundle\Entity\Commande;
 use Musee\BilletterieBundle\Entity\LigneCommande;
 use Musee\BilletterieBundle\Form\Type\FormBilletterieGeneral;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class FormulaireController extends Controller {
+    
+        
+     public function indexAction(Request $request) {
+    
+        $cmd = new Commande();
+        $visiteurs = new ArrayCollection();
+        $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
+        
+        $editForm->handleRequest($request);
+        if ($editForm->isValid()) {
 
+        $validator = $this->get('validator');
+        $listErrors = $validator->validate($cmd);
+        if(count($listErrors) > 0) {
+        // $listErrors est un objet, sa méthode __toString permet de lister joliement les erreurs
+        return new Response((string) $listErrors);
+        } 
+        foreach ($cmd->getLigneCommande() as $visiteur) {$visiteurs->add($visiteur);}
+        $data=$editForm->getData();
+        return $this->redirectToRoute('visiteurs_form', array('quantite' => $data->getQuantite(), 'email' => $data->getEmail(), 'date' => $data->getDate(), ));
+        }
+        return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $editForm->createView(), 'init' => 1,));
+        }
+        
+        
+        
       public function addVisiteursAction($quantite, $email, $date, Request $request)  {
         // On récupère les infos du formulaire précédent           
         $cmd = new Commande();
@@ -31,33 +57,20 @@ class FormulaireController extends Controller {
         $em->persist($cmd);
         $em->flush();
         $id=$editForm->getData()->getId();
-        return $this->redirectToRoute('edit_form', array('id' => $id));
+        return $this->redirectToRoute('panier', array('id' => $id));
         }
         return $this->render('MuseeBilletterieBundle:Formulaire:visiteurs.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'date' => $date, 'quantite' => $quantite, 'email' => $email));
         }
     
-    
-     public function addAction(Request $request) {
-        $cmd = new Commande();
-        $visiteurs = new ArrayCollection();
-        $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
-        $editForm->handleRequest($request);
-        if ($editForm->isValid()) {
-        foreach ($cmd->getLigneCommande() as $visiteur) {$visiteurs->add($visiteur);}
-        $data=$editForm->getData();
-        return $this->redirectToRoute('visiteurs_form', array('quantite' => $data->getQuantite(), 'email' => $data->getEmail(), 'date' => $data->getDate(), ));
-        }
-        return $this->render('MuseeBilletterieBundle:Formulaire:index.html.twig', array('form' => $editForm->createView(), 'init' => 1,));
-        }
-    
-    
-    
-    public function editAction($id, Request $request) {
+        
+        
+    /**
+ * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
+ */
+    public function paiementAction(Commande $cmd, Request $request) {
         
         $em = $this->getDoctrine()->getManager();
-        $cmd = $em->getRepository('MuseeBilletterieBundle:Commande')->find($id);
         $visiteurs=$em->getRepository('MuseeBilletterieBundle:LigneCommande')->findBy(array('commande' => $cmd));
-        if (!$cmd) { throw $this->createNotFoundException('No task found for id ' . $id); }
         $prix = $this->container->get('musee_billetterie.prix');     
         $cmd->setLigneCommande($visiteurs);
         $prixTotal=0;
@@ -68,17 +81,45 @@ class FormulaireController extends Controller {
         }
         $cmd->setPrixTotal($prixTotal);
         $em->persist($cmd);
+        $stripe = $this->container->get('musee_billetterie.stripe');
+        if($request->request->get('stripeToken'))
+        {$stripe->paiementStripe($request->request->get('stripeToken'),$request->request->get('stripeEmail'), $prixTotal ); 
+        $cmd->setPaiement(true);      
+        $session = $request->getSession();
+        $session->getFlashBag()->add('info', 'Votre paiement a été réalisé avec succès ! Vous allez recevoir les billets par email');
+        $em->persist($cmd);
         $em->flush();
-
-if(isset($_POST['stripeToken']))
-{
-$stripe = $this->container->get('musee_billetterie.stripe');
-$stripe->paiementStripe($_POST['stripeToken'],$_POST['stripeEmail'], $prixTotal );
-  echo '<h1>Successfully charged $50.00!</h1>';    
-}  
+        }
+        //if($cmd->getPaiement() == true){return $this->redirectToRoute('musee_billetterie_home');    }      
         $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
         return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'cmd' => $cmd));
              
-}}
+}
+
+    public function EmailAction()
+{
+    $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom('test@gmail.com')
+        ->setTo('camille.palpacuer@gmail.com')
+        ->setBody($this->render('MuseeBilletterieBundle:Formulaire:test.html.twig'),'text/html');
+        /*
+         * If you also want to include a plaintext version of the message
+        ->addPart(
+            $this->renderView(
+                'Emails/registration.txt.twig',
+                array('name' => $name)
+            ),
+            'text/plain'
+        )
+        */
+    
+    $this->get('mailer')->send($message);
+
+    return $this->render('MuseeBilletterieBundle:Formulaire:test.html.twig');
+}
+
+
+        }
 
 ?>

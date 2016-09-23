@@ -54,8 +54,14 @@ class Commande {
      * @ORM\Column(name="prixTotal", type="integer")
      */
     private $prixTotal=0;
-
-  
+    
+    
+    /**
+      * @var bool
+      * 
+      * @ORM\Column(name="paiement", type="boolean")
+      */
+    private $paiement;
 
     /**
      * @var string
