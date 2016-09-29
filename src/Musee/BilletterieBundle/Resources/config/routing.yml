@@ -8,9 +8,13 @@ panier:
     requirements:
         id: \d+  
 visiteurs_form:
-    path:    /visiteurs/{date}/{quantite}/{email}
+    path:    /visiteurs/{id}
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:addVisiteurs }
     requirements:
         date: .+
         quantite: \d+ 
         email: .+
+        id: .+
+musee_email:
+    path:    /Email
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:Email }

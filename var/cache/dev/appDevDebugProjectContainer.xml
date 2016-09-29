@@ -30,7 +30,8 @@
     <parameter key="database_user">root</parameter>
     <parameter key="database_password">null</parameter>
     <parameter key="mailer_transport">smtp</parameter>
-    <parameter key="mailer_host">127.0.0.1</parameter>
+    <parameter key="mailer_host">smtp.free.fr</parameter>
+    <parameter key="mailer_port">25</parameter>
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">3210ca9ad8858c935df590363804a591a64cf4ff</parameter>
@@ -167,19 +168,22 @@
     <parameter key="swiftmailer.mailer.default.delivery.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.encryption">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.port">25</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.host">127.0.0.1</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.free.fr</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.username">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.password">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">C:\wamp2\www\Symfony\var\cache\dev/swiftmailer/spool/default</parameter>
-    <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.spool.enabled">false</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
-    <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
-    <parameter key="swiftmailer.spool.enabled">true</parameter>
+    <parameter key="swiftmailer.mailer.default.single_address">camille.palpacuer@gmail.com</parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_addresses" type="collection">
+      <parameter>camille.palpacuer@gmail.com</parameter>
+    </parameter>
+    <parameter key="swiftmailer.mailer.default.delivery_whitelist" type="collection"/>
+    <parameter key="swiftmailer.spool.enabled">false</parameter>
     <parameter key="swiftmailer.delivery.enabled">true</parameter>
-    <parameter key="swiftmailer.single_address">null</parameter>
+    <parameter key="swiftmailer.single_address">camille.palpacuer@gmail.com</parameter>
     <parameter key="swiftmailer.mailers" type="collection">
       <parameter key="default">swiftmailer.mailer.default</parameter>
     </parameter>
@@ -380,6 +384,11 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="doctrine.orm.default_entity_manager"/>
     </service>
+    <service id="musee_billetterie.validator.quantiterestante" class="Musee\BilletterieBundle\Services\Validator\QuantiteRestanteValidator">
+      <tag name="validator.constraint_validator" alias="musee_billetterie_quantiteRestante"/>
+      <argument type="service" id="request_stack"/>
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+    </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -495,7 +504,7 @@
                   <tag name="cache.pool"/>
                   <argument>bpxnfE0tXx</argument>
                   <argument>0</argument>
-                  <argument>Jm2tVr3O4QY+8pAtJN06sg</argument>
+                  <argument>ynHR4hddsYugfZ4CpBqZEw</argument>
                   <argument>C:\wamp2\www\Symfony\var\cache\dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -508,7 +517,7 @@
                   <tag name="cache.pool"/>
                   <argument>nIV3JU3muk</argument>
                   <argument>0</argument>
-                  <argument>Jm2tVr3O4QY+8pAtJN06sg</argument>
+                  <argument>ynHR4hddsYugfZ4CpBqZEw</argument>
                   <argument>C:\wamp2\www\Symfony\var\cache\dev/pools</argument>
                   <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
                   <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -840,7 +849,7 @@
       <tag name="cache.pool"/>
       <argument>NI+XnVmld7</argument>
       <argument>0</argument>
-      <argument>Jm2tVr3O4QY+8pAtJN06sg</argument>
+      <argument>ynHR4hddsYugfZ4CpBqZEw</argument>
       <argument>C:\wamp2\www\Symfony\var\cache\dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -1110,6 +1119,8 @@
             <argument type="collection">
               <argument key="musee_billetterie_dateReservation">musee_billetterie.validator.datereservation</argument>
               <argument key="Musee\BilletterieBundle\Services\Validator\DateReservationValidator">musee_billetterie.validator.datereservation</argument>
+              <argument key="musee_billetterie_quantiteRestante">musee_billetterie.validator.quantiterestante</argument>
+              <argument key="Musee\BilletterieBundle\Services\Validator\QuantiteRestanteValidator">musee_billetterie.validator.quantiterestante</argument>
               <argument key="validator.expression">validator.expression</argument>
               <argument key="Symfony\Component\Validator\Constraints\ExpressionValidator">validator.expression</argument>
               <argument key="Symfony\Component\Validator\Constraints\EmailValidator">validator.email</argument>
@@ -1578,7 +1589,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>57e5a2a06ed1f8.19884475</argument>
+            <argument>57ed4107268369.49181397</argument>
           </service>
         </argument>
       </argument>
@@ -1712,7 +1723,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>57e5a2a06ed1f8.19884475</argument>
+            <argument>57ed4107268369.49181397</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -1985,7 +1996,6 @@
       <argument type="service" id="service_container"/>
       <argument type="service" id="logger" on-invalid="null"/>
     </service>
-    <service id="swiftmailer.mailer.default.transport.eventdispatcher" class="Swift_Events_SimpleEventDispatcher" public="false"/>
     <service id="swiftmailer.mailer.default" class="Swift_Mailer">
       <argument type="service" id="swiftmailer.mailer.default.transport"/>
     </service>
@@ -2577,15 +2587,7 @@
       </call>
       <autowiring-type>Psr\Log\LoggerInterface</autowiring-type>
     </service>
-    <service id="swiftmailer.mailer.default.transport" class="Swift_Transport_SpoolTransport">
-      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
-      <argument type="service" id="swiftmailer.mailer.default.spool"/>
-      <call method="registerPlugin">
-        <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
-      </call>
-    </service>
-    <service id="swiftmailer.mailer.default.spool" class="Swift_MemorySpool"/>
-    <service id="swiftmailer.mailer.default.transport.real" class="Swift_Transport_EsmtpTransport">
+    <service id="swiftmailer.mailer.default.transport" class="Swift_Transport_EsmtpTransport">
       <argument type="service">
         <service class="Swift_Transport_StreamBuffer" public="false">
           <argument type="service">
@@ -2619,9 +2621,11 @@
           </service>
         </argument>
       </argument>
-      <argument type="service" id="swiftmailer.mailer.default.transport.eventdispatcher"/>
+      <argument type="service">
+        <service class="Swift_Events_SimpleEventDispatcher" public="false"/>
+      </argument>
       <call method="setHost">
-        <argument>127.0.0.1</argument>
+        <argument>smtp.free.fr</argument>
       </call>
       <call method="setPort">
         <argument>25</argument>
@@ -2635,11 +2639,22 @@
       <call method="setSourceIp">
         <argument>null</argument>
       </call>
+      <call method="registerPlugin">
+        <argument type="service" id="swiftmailer.plugin.redirecting"/>
+      </call>
+      <call method="registerPlugin">
+        <argument type="service" id="swiftmailer.mailer.default.plugin.messagelogger"/>
+      </call>
+    </service>
+    <service id="swiftmailer.plugin.redirecting" class="Swift_Plugins_RedirectingPlugin">
+      <tag name="swiftmailer.default.plugin"/>
+      <argument type="collection">
+        <argument>camille.palpacuer@gmail.com</argument>
+      </argument>
+      <argument type="collection"/>
     </service>
     <service id="session.storage" alias="session.storage.native"/>
     <service id="event_dispatcher" alias="debug.event_dispatcher"/>
-    <service id="swiftmailer.spool" alias="swiftmailer.mailer.default.spool"/>
-    <service id="swiftmailer.transport.real" alias="swiftmailer.mailer.default.transport.real"/>
     <service id="swiftmailer.plugin.messagelogger" alias="swiftmailer.mailer.default.plugin.messagelogger"/>
     <service id="swiftmailer.mailer" alias="swiftmailer.mailer.default"/>
     <service id="swiftmailer.transport" alias="swiftmailer.mailer.default.transport"/>

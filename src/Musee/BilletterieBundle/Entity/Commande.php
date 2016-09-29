@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Musee\BilletterieBundle\Services\Validator\DateReservation;
+use Musee\BilletterieBundle\Services\Validator\QuantiteRestante;
 
 
 /**
@@ -34,12 +35,8 @@ class Commande {
     /**
      * @var string
      * @ORM\Column(name="date", type="string", length=255)
-     * @DateReservation{message="dddddd"}
-     * @Assert\Regex(
-     *     pattern     = "/^[0-3][0-9]-[0-1][0-9]-[2][0-9][0-9][0-9]+$/i",
-     *     htmlPattern = "^[0-3][0-9]-[0-1][0-9]-[2][0-9][0-9][0-9]+$",
-     *  message = "La date '{{ value }}' n'est pas valide. Format jj-mm-yy")
-)
+     * @DateReservation{message=""}
+    )
      */
     private $date;
 
@@ -56,7 +53,7 @@ class Commande {
      *
      * @ORM\Column(name="email", type="string", length=255)
      * @Assert\Email(
-     *     message = "L adresse email '{{ value }}' n'est pas valide",
+     *     message = "L adresse email '{{ value }} n'est pas valide attention elle sera utiliser pour l'envoie des billets",
      *     checkMX = true)
      */
     private $email;
@@ -78,7 +75,7 @@ class Commande {
 
     /**
      * @var string
-     *
+     * @QuantiteRestante{message="d"}
      * @ORM\Column(name="quantite", type="string", length=255)
      */
     private $quantite;

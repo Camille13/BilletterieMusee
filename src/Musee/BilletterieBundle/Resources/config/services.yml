@@ -20,3 +20,13 @@ services:
         tags:
 
             - { name: validator.constraint_validator, alias: musee_billetterie_dateReservation }  # C'est avec l'alias qu'on retrouvera le service
+    
+    musee_billetterie.validator.quantiteRestante:                              # Le nom du service
+
+        class: Musee\BilletterieBundle\Services\Validator\QuantiteRestanteValidator     # La classe du service, ici notre validateur déjà créé
+
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+
+        tags:
+
+            - { name: validator.constraint_validator, alias: musee_billetterie_quantiteRestante }  # C'est avec l'alias qu'on retrouvera le service

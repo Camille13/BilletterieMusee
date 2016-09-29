@@ -6,7 +6,8 @@ parameters:
     database_user: root
     database_password: null
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
+    mailer_host: smtp.free.fr
+    mailer_port: 25
     mailer_user: null
     mailer_password: null
     secret: 3210ca9ad8858c935df590363804a591a64cf4ff

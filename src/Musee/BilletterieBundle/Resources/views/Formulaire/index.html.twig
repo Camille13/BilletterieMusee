@@ -3,10 +3,19 @@
 {% extends "MuseeBilletterieBundle::Layout.html.twig" %}
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
-    <div class="row">
+ 
+        
+        <div class="row">
         <div class="col-md-7 col-md-offset-1">
             <div class="well col-md-12" id="billetterie">
                 <legend> Billetterie en ligne  <p class="text-muted"> Achetez votre billet en ligne et ne perdez plus de temps dans les files d'attentes !</p></legend>
+               
+                
+                
+                
+                
+                   
+                
                 {% if form is defined %}
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
                     {{ form_row(form._token) }}
@@ -20,9 +29,9 @@
                     <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.date) }}</div></div>
                     <div class="form-group">
                         {{ form_label(form.email, "Adresse email *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(form.email) }}
-                        <div class="col-sm-8">{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
+                    <div class="col-sm-8">{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}</div>
                     </div>
+                    <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.email) }}</div></div>
                     <div class="form-group">
                         {{ form_label(form.type, "Type *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(form.type) }}
@@ -32,10 +41,10 @@
                     </div>
                     <div class="form-group">
                         {{ form_label(form.quantite, "Quantité *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(form.quantite) }}
+   
                         <div class="col-sm-8">{{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }} </div>
                     </div>
-
+ <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.quantite) }}</div></div>
                     <div class="form-group"><div class="col-sm-12 ">{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }} </div></div>
                     {{ form_end(form, {'render_rest': false}) }}
                 {% else %}
