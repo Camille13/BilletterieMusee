@@ -48,7 +48,7 @@ public function paiementStripe ($token, $emailStripe, $montant)
       'source'  => $token
   ));
 
-  $charge = \Stripe\Charge::create(array(
+  \Stripe\Charge::create(array(
       'customer' => $customer->id,
       'amount'   => $montant.'00',
       'currency' => 'eur'

@@ -59,7 +59,7 @@ class Prix
    if($age >= 60){$prix=$this->prix_senior; } 
    else{$prix=$this->prix_normal;}         
    }}
-if($reduit == true){ if($prix > $this->prix_reduit){$prix=$this->prix_reduit;}   }
+if($reduit === true){ if($prix > $this->prix_reduit){$prix=$this->prix_reduit;}   }
    return $prix;
 }
       

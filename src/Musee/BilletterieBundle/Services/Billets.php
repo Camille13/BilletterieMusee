@@ -1,9 +1,10 @@
 <?php
 
 // src/Musee/BilletterieBundle/Services/Billets.php
+namespace Musee\BilletterieBundle\Services;
 
 use Symfony\Component\HttpFoundation\Response;
-namespace Musee\BilletterieBundle\Services;
+
 
 
 class Billets
@@ -27,7 +28,7 @@ class Billets
   private function getBillets($html)
   {
      return new Response(
-    $pdf=$this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+    $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
     200,
     array(
         'Content-Type'          => 'application/pdf',

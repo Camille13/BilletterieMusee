@@ -66,7 +66,6 @@ class FormulaireController extends Controller {
      * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
      */
     public function paiementAction(Commande $cmd, Request $request) {
-
         $em = $this->getDoctrine()->getManager();
         $visiteurs = $em->getRepository('MuseeBilletterieBundle:LigneCommande')->findBy(array('commande' => $cmd));
         $prix = $this->container->get('musee_billetterie.prix');
@@ -76,15 +75,14 @@ class FormulaireController extends Controller {
         foreach ($cmd->getLigneCommande() as $visiteur) {
             $tarif = $prix->calculePrix($visiteur->getBorn(), $cmd->getDate(), $visiteur->getTarifReduit());  $visiteur->setTarif($tarif); $prixTotal+=$tarif;  }
         $cmd->setPrixTotal($prixTotal);        $em->persist($cmd);
-        $stripe = $this->container->get('musee_billetterie.stripe');
-        if ($request->request->get('stripeToken')) {
-            $stripe->paiementStripe($request->request->get('stripeToken'), $request->request->get('stripeEmail'), $prixTotal);
-            $cmd->setPaiement(true);
-            $cmd->setToken($request->request->get('stripeToken'));
+        $stripe = $this->container->get('musee_billetterie.stripe');        $token=$request->request->get('stripeToken');
+        if ($token) {
+            $stripe->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
+            $cmd->setPaiement(true);   $cmd->setToken($token);
             $session = $request->getSession();
             $session->getFlashBag()->add('info', 'Vous allez être débité de ' . $cmd->getPrixTotal() . ',00 € ! Vous allez recevoir les billets par email à l\'adresse ' . $cmd->getEmail() . '. Imprimez les et présentez les à l\'entrée');
-            $em->persist($cmd)->flush();
-        }
+            $em->persist($cmd);
+            $em->flush();   }
         if ($cmd->getPaiement() === true) { return $this->redirectToRoute('musee_email', array('id' => $cmd->getId())); }
         $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
         return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'cmd' => $cmd));
