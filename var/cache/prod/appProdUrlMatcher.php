@@ -27,30 +27,24 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $context = $this->context;
         $request = $this->request;
 
-        if (0 === strpos($pathinfo, '/platform')) {
-            // oc_platform_home
-            if ($pathinfo === '/platform') {
-                return array (  '_controller' => 'OC\\PlateformBundle\\Controller\\AdvertController::indexAction',  '_route' => 'oc_platform_home',);
-            }
+        // musee_billetterie_home
+        if ($pathinfo === '/Accueil') {
+            return array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::indexAction',  '_route' => 'musee_billetterie_home',);
+        }
 
-            if (0 === strpos($pathinfo, '/platform/ad')) {
-                // oc_platform_view
-                if (0 === strpos($pathinfo, '/platform/advert') && preg_match('#^/platform/advert/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'oc_platform_view')), array (  '_controller' => 'OC\\PlateformBundle\\Controller\\AdvertController::viewAction',));
-                }
+        // panier
+        if (0 === strpos($pathinfo, '/panier') && preg_match('#^/panier/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'panier')), array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::paiementAction',));
+        }
 
-                // oc_platform_add
-                if ($pathinfo === '/platform/add') {
-                    return array (  '_controller' => 'OC\\PlateformBundle\\Controller\\AdvertController::addAction',  '_route' => 'oc_platform_add',);
-                }
+        // visiteurs_form
+        if (0 === strpos($pathinfo, '/visiteurs') && preg_match('#^/visiteurs/(?P<id>.+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'visiteurs_form')), array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::addVisiteursAction',));
+        }
 
-            }
-
-            // oc_platform_view_slug
-            if (preg_match('#^/platform/(?P<year>[^/]++)/(?P<slug>[^/\\.]++)\\.(?P<format>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'oc_platform_view_slug')), array (  '_controller' => 'OC\\PlateformBundle\\Controller\\AdvertController::viewSlugAction',));
-            }
-
+        // musee_email
+        if (0 === strpos($pathinfo, '/Email') && preg_match('#^/Email/(?P<id>.+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'musee_email')), array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::EmailAction',));
         }
 
         // homepage
