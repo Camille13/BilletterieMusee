@@ -1,4 +1,5 @@
 {   "name": "camille/symfony",
+    "description": "Billetterie Projet OC",
     "license": "proprietary",
     "type": "project",
     "autoload": {
