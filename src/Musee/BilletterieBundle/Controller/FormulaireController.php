@@ -69,6 +69,8 @@ class FormulaireController extends Controller {
         $visiteurs=$em->getRepository('MuseeBilletterieBundle:LigneCommande')->findBy(array('commande' => $cmd));
         $prix = $this->container->get('musee_billetterie.prix');     
         $cmd->setLigneCommande($visiteurs);
+        
+        //Calcule le prix total 
         $prixTotal=0;
         foreach ($cmd->getLigneCommande() as $visiteur) {   
         $tarif=$prix->calculePrix($visiteur->getBorn(), $cmd->getDate(), $visiteur->getTarifReduit());
@@ -77,11 +79,14 @@ class FormulaireController extends Controller {
         }
         $cmd->setPrixTotal($prixTotal);
         $em->persist($cmd);
+        
+        //Paiement Stripe
         $stripe = $this->container->get('musee_billetterie.stripe');
         if($request->request->get('stripeToken'))
         {$stripe->paiementStripe($request->request->get('stripeToken'),$request->request->get('stripeEmail'), $prixTotal ); 
         $cmd->setPaiement(true);      
-        $cmd->setToken($request->request->get('stripeToken'));      
+        $cmd->setToken($request->request->get('stripeToken'));     
+        
         $session = $request->getSession();
         $session->getFlashBag()->add('info', 'Vous allez être débité de '.$cmd->getPrixTotal().',00 € ! Vous allez recevoir les billets par email à l\'adresse '.$cmd->getEmail().'. Imprimez les et présentez les à l\'entrée');
         $em->persist($cmd);
