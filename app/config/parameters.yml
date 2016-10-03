@@ -9,3 +9,4 @@ parameters:
     mailer_host: smtp.free.fr
     mailer_user: null
     mailer_password: null
+    secret: 3210ca9ad8858c935df590363804a591a64cf4ff
