@@ -2,7 +2,7 @@
 
 // src/Musee/BilletterieBundle/Services/Billets.php
 
-
+use Symfony\Component\HttpFoundation\Response;
 namespace Musee\BilletterieBundle\Services;
 
 
