@@ -26,7 +26,7 @@ class FormBilletterieGeneral extends AbstractType
         $builder->add('date',  TextType::class)	
                 ->add('type',ChoiceType::class, array('choices'  => array('Journée' => 'J','Demi-journée' => 'D',)))
                 ->add('ligneCommande', CollectionType::class, array('entry_type' => FormBilletterieVisiteur::class, 'allow_extra_fields' => true,     'allow_add'    => true,
-                'allow_delete' => true,  ))
+                'allow_delete' => true, 'by_reference' => false ))
                 ->add('email', TextType::class, array('required' => true))
                 ->add('quantite', IntegerType::class)
                 ->add('Valider', SubmitType::class);

@@ -28,7 +28,9 @@ class Commande {
     private $id;
 
 
-    
+    /**
+ * @ORM\OneToMany(targetEntity="Musee\BilletterieBundle\Entity\LigneCommande", cascade={"persist"}, mappedBy="commande" )
+ */
     private $ligneCommande;
     
     
@@ -103,14 +105,11 @@ class Commande {
         $this->ligneCommande->removeElement($ligneCommande);
     }
     
-    
-        public function addLigneCommande(LigneCommande $ligneCommande)
+     public function addLigneCommande(LigneCommande $ligneCommande)
     {
-            
-        $ligneCommande->add($this);
         $this->ligneCommande->add($ligneCommande);
-       
     }
+ 
     
 
     

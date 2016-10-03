@@ -39,18 +39,10 @@ class FormulaireController extends Controller {
      */
     public function addVisiteursAction(Commande $cmd, Request $request) {
 
-        
-        
-        
-        
-        $visiteurs = new ArrayCollection();
-        for ($i = 1; $i <= $cmd->getQuantite(); $i++) {
-            $visiteurs->add(new LigneCommande());
-        }
-        $cmd->setLigneCommande($visiteurs);
-        $editForm = $this->createForm(FormBilletterieVisiteurs::class, $cmd);
-        $editForm->handleRequest($request);
-        if ($editForm->isValid()) {
+        for ($i = 1; $i <= $cmd->getQuantite(); $i++) {$cmd->addLigneCommande(new LigneCommande()); }
+        $form = $this->createForm(FormBilletterieVisiteurs::class, $cmd);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             foreach ($cmd->getLigneCommande() as $visiteur) {
                 $visiteur->setCommande($cmd);
@@ -60,7 +52,7 @@ class FormulaireController extends Controller {
             $em->flush();
             return $this->redirectToRoute('panier', array('id' => $cmd->getId()));
         }
-        return $this->render('MuseeBilletterieBundle:Formulaire:visiteurs.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'date' => $cmd->getDate(), 'quantite' => $cmd->getQuantite(), 'email' => $cmd->getEmail(), 'type' => $cmd->getType(),));
+        return $this->render('MuseeBilletterieBundle:Formulaire:visiteurs.html.twig', array('form' => $form->createView(), 'init' => 1, 'date' => $cmd->getDate(), 'quantite' => $cmd->getQuantite(), 'email' => $cmd->getEmail(), 'type' => $cmd->getType(),));
     }
 
     /**
