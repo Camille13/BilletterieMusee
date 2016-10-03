@@ -3,7 +3,6 @@
 namespace Musee\BilletterieBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Musee\BilletterieBundle\Services\Validator\DateReservation;
 use Musee\BilletterieBundle\Services\Validator\QuantiteRestante;

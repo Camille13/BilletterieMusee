@@ -6,7 +6,6 @@ namespace Musee\BilletterieBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Musee\BilletterieBundle\Entity\Commande;
 use Musee\BilletterieBundle\Entity\LigneCommande;
 use Musee\BilletterieBundle\Form\Type\FormBilletterieGeneral;
@@ -40,9 +39,13 @@ class FormulaireController extends Controller {
      */
     public function addVisiteursAction(Commande $cmd, Request $request) {
 
+        
+        
+        
+        
         $visiteurs = new ArrayCollection();
         for ($i = 1; $i <= $cmd->getQuantite(); $i++) {
-            $visiteurs->add(new LigneCommande);
+            $visiteurs->add(new LigneCommande());
         }
         $cmd->setLigneCommande($visiteurs);
         $editForm = $this->createForm(FormBilletterieVisiteurs::class, $cmd);
