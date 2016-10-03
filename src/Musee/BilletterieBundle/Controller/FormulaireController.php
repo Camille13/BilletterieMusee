@@ -24,8 +24,6 @@ class FormulaireController extends Controller {
         $Form->handleRequest($request);
 
         if ($Form->isValid()) {
-
-
             foreach ($cmd->getLigneCommande() as $visiteur) {
                 $visiteurs->add($visiteur);
             }
@@ -68,19 +66,18 @@ class FormulaireController extends Controller {
     public function paiementAction(Commande $cmd, Request $request) {
         $em = $this->getDoctrine()->getManager();
         $visiteurs = $em->getRepository('MuseeBilletterieBundle:LigneCommande')->findBy(array('commande' => $cmd));
-        $prix = $this->container->get('musee_billetterie.prix');
         $cmd->setLigneCommande($visiteurs);
         //Calcule le prix total 
         $prixTotal = 0;
         foreach ($cmd->getLigneCommande() as $visiteur) {
-            $tarif = $prix->calculePrix($visiteur->getBorn(), $cmd->getDate(), $visiteur->getTarifReduit());  $visiteur->setTarif($tarif); $prixTotal+=$tarif;  }
+            $tarif = $this->container->get('musee_billetterie.prix')->calculePrix($visiteur->getBorn(), $cmd->getDate(), $visiteur->getTarifReduit());  
+            $visiteur->setTarif($tarif); $prixTotal+=$tarif;  }
         $cmd->setPrixTotal($prixTotal);        $em->persist($cmd);
         $stripe = $this->container->get('musee_billetterie.stripe');        $token=$request->request->get('stripeToken');
         if ($token) {
             $stripe->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
-            $cmd->setPaiement(true);   $cmd->setToken($token);
-            $session = $request->getSession();
-            $session->getFlashBag()->add('info', 'Vous allez être débité de ' . $cmd->getPrixTotal() . ',00 € ! Vous allez recevoir les billets par email à l\'adresse ' . $cmd->getEmail() . '. Imprimez les et présentez les à l\'entrée');
+            $cmd->setPaiement(true)->setToken($token);
+            $request->getSession()->getFlashBag()->add('info', 'Vous allez être débité de ' . $cmd->getPrixTotal() . ',00 € ! Vous allez recevoir les billets par email à l\'adresse ' . $cmd->getEmail() . '. Imprimez les et présentez les à l\'entrée');
             $em->persist($cmd);
             $em->flush();   }
         if ($cmd->getPaiement() === true) { return $this->redirectToRoute('musee_email', array('id' => $cmd->getId())); }
