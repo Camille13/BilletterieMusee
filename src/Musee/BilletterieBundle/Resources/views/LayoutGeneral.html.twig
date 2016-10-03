@@ -1,0 +1,64 @@
+{# src/Musee/BilletterieBundle/Resources/views/layoutGeneral.html.twig #}
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Musée du Louvre{% endblock %}</title>
+  </head>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link href="http://localhost/Symfony/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://localhost/Symfony/web/css/css_billets.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> 
+   <style>
+.dashed{border:2px dashed black; margin-top:2%;}
+   .navbar-header a{font-family: "Playfair Display"; font-size:25px; }
+legend{font-size:16px; font-weight: bold;}
+#contenu {background: #000000 url('../img/museeLouvre.jpg') center center no-repeat; background-size:cover; height:100%;margin-top:50px;}
+
+dl{font-size:16px;}
+.gris{background-color:#222; color:white;}
+.text-gris{color:#222; font-weight:bold; font-size:18px; }
+.black{background-color:black; color:white;}
+.border-b-gris{border-bottom:4px solid #222; }
+ h4{ text-align:center;  }
+h2, text{ text-align:center;  font-family: "Playfair Display";}
+h5{text-align:center; }
+legend .text-muted {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size:12px; }
+h1{font-family: "Playfair Display";  font-weight:bold;  font-size:3.5em; margin-bottom: 0; }
+h4{margin-bottom:35px;  padding-top:0; margin-top: 0;}
+.well{background-color:rgba(245, 245, 245, 0.9);
+}
+.padding-1{padding : 1% 0%;}
+.padding-2{padding : 2% 0%;}
+.well > div, legend{ text-shadow: 1px 1px rgb(245, 245, 245);}
+iframe{padding-bottom:25px; }
+th{text-align: center;}
+</style>
+  <body>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<style type="text/css">
+    .container-fluid {
+        overflow: hidden;
+        page-break-after: always;
+    
+    
+    }
+</style>
+
+ 
+  
+  {% block body %}
+
+    {% endblock %}
+    
+  </div>
+ <script src="http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>

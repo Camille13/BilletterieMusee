@@ -34,11 +34,13 @@
                     <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.email) }}</div></div>
                     <div class="form-group">
                         {{ form_label(form.type, "Type *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        {{ form_errors(form.type) }}
+                     
                         <div class="col-sm-8">
                             {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+                        
+                        <div class="form-group"><div class="col-sm-8 col-sm-offset-4"> {{ form_errors(form.type) }}</div></div>
                     <div class="form-group">
                         {{ form_label(form.quantite, "Quantité *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
    
@@ -48,7 +50,7 @@
                     <div class="form-group"><div class="col-sm-12 ">{{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }} </div></div>
                     {{ form_end(form, {'render_rest': false}) }}
                 {% else %}
-                    Vos billets vous ont été envoyé à l'adresse email
+                    
                 {% endif %}
             </div>
             <div class="well col-md-12" id="tarifs">

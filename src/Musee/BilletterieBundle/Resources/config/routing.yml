@@ -11,10 +11,9 @@ visiteurs_form:
     path:    /visiteurs/{id}
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:addVisiteurs }
     requirements:
-        date: .+
-        quantite: \d+ 
-        email: .+
         id: .+
 musee_email:
-    path:    /Email
+    path:    /Email/{id}
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:Email }
+    requirements:
+        id: .+

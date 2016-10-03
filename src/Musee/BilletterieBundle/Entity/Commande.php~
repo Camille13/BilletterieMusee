@@ -3,12 +3,18 @@
 namespace Musee\BilletterieBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Musee\BilletterieBundle\Services\Validator\DateReservation;
+use Musee\BilletterieBundle\Services\Validator\QuantiteRestante;
+
 
 /**
  * Commande
  *
  * @ORM\Table(name="commande")
  * @ORM\Entity(repositoryClass="Musee\BilletterieBundle\Repository\CommandeRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande {
 
@@ -22,14 +28,15 @@ class Commande {
     private $id;
 
 
-
+    
     private $ligneCommande;
     
     
     /**
      * @var string
-     *
      * @ORM\Column(name="date", type="string", length=255)
+     * @DateReservation{message=""}
+    )
      */
     private $date;
 
@@ -45,6 +52,9 @@ class Commande {
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email(
+     *     message = "L adresse email '{{ value }} n'est pas valide attention elle sera utiliser pour l'envoie des billets",
+     *     checkMX = true)
      */
     private $email;
 
@@ -61,14 +71,24 @@ class Commande {
       * 
       * @ORM\Column(name="paiement", type="boolean")
       */
-    private $paiement;
+    private $paiement=false;
 
     /**
      * @var string
-     *
+     * @QuantiteRestante{message="d"}
      * @ORM\Column(name="quantite", type="string", length=255)
      */
     private $quantite;
+    
+     /**
+     * @var string
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token=null;
+    
+       
+    
+    
 
   public function __construct()
     {
@@ -262,5 +282,29 @@ class Commande {
     public function getLigneCommande()
     {
         return $this->ligneCommande;
+    }
+
+    /**
+     * Set paiement
+     *
+     * @param boolean $paiement
+     *
+     * @return Commande
+     */
+    public function setPaiement($paiement)
+    {
+        $this->paiement = $paiement;
+
+        return $this;
+    }
+
+    /**
+     * Get paiement
+     *
+     * @return boolean
+     */
+    public function getPaiement()
+    {
+        return $this->paiement;
     }
 }

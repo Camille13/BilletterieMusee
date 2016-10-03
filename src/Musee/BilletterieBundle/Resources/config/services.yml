@@ -1,11 +1,23 @@
 # src/Musee/BilletterieBundle/Resources/config/services.yml
-
+parameters:
+    
+        prix_normal: 16
+        prix_senior: 12
+        prix_enfant: 8
+        prix_reduit: 10
 
 services:
 
     musee_billetterie.prix:
 
         class: Musee\BilletterieBundle\Services\Prix
+        
+        arguments: 
+        
+            - "%prix_normal%"
+            - "%prix_senior%"
+            - "%prix_enfant%"
+            - "%prix_reduit%"
         
     musee_billetterie.stripe:
 
@@ -29,4 +41,14 @@ services:
 
         tags:
 
-            - { name: validator.constraint_validator, alias: musee_billetterie_quantiteRestante }  # C'est avec l'alias qu'on retrouvera le service
+            - { name: validator.constraint_validator, alias: musee_billetterie_quantiteRestante }  
+    
+    musee_billetterie.validator.type:                     
+
+        class: Musee\BilletterieBundle\Services\Validator\TypeValidator    
+
+        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+
+        tags:
+
+            - { name: validator.constraint_validator, alias: musee_billetterie_type }  # C'est avec l'alias qu'on retrouvera le service

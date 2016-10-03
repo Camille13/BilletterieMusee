@@ -6,6 +6,7 @@ namespace Musee\BilletterieBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Musee\BilletterieBundle\Entity\Commande;
 use Musee\BilletterieBundle\Entity\LigneCommande;
 use Musee\BilletterieBundle\Form\Type\FormBilletterieGeneral;
@@ -17,22 +18,19 @@ class FormulaireController extends Controller {
     
         
      public function indexAction(Request $request) {
-    
+
         $cmd = new Commande();
         $visiteurs = new ArrayCollection();
         $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
-        
         $editForm->handleRequest($request);
         if ($editForm->isValid()) {
-
         $validator = $this->get('validator');
         $listErrors = $validator->validate($cmd);
         if(count($listErrors) > 0) {
-        // $listErrors est un objet, sa méthode __toString permet de lister joliement les erreurs
         return new Response((string) $listErrors);
         } 
         foreach ($cmd->getLigneCommande() as $visiteur) {$visiteurs->add($visiteur);}
-        $data=$editForm->getData();
+        $editForm->getData();
         $em = $this->getDoctrine()->getManager();
         $em->persist($cmd);
         $em->flush();
@@ -44,15 +42,11 @@ class FormulaireController extends Controller {
  /**
  * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
  */    
-        
-      public function addVisiteursAction(Commande $cmd, Request $request)  {
-       
+      public function addVisiteursAction(Commande $cmd, Request $request)  {     
           
-        // On génère le nombre de visiteurs
         $visiteurs=new ArrayCollection();
         for($i=1; $i <= $cmd->getQuantite(); $i++){$visiteurs->add(new LigneCommande);}
         $cmd->setLigneCommande($visiteurs);
-        
         $editForm = $this->createForm(FormBilletterieVisiteurs::class, $cmd);
         $editForm->handleRequest($request);         
         if ($editForm->isValid()) { 
@@ -65,9 +59,7 @@ class FormulaireController extends Controller {
         }
         return $this->render('MuseeBilletterieBundle:Formulaire:visiteurs.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'date' => $cmd->getDate(), 'quantite' => $cmd->getQuantite(), 'email' => $cmd->getEmail(), 'type' => $cmd->getType(),));
         }
-    
-        
-        
+ 
     /**
  * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
  */
@@ -89,46 +81,43 @@ class FormulaireController extends Controller {
         if($request->request->get('stripeToken'))
         {$stripe->paiementStripe($request->request->get('stripeToken'),$request->request->get('stripeEmail'), $prixTotal ); 
         $cmd->setPaiement(true);      
+        $cmd->setToken($request->request->get('stripeToken'));      
         $session = $request->getSession();
         $session->getFlashBag()->add('info', 'Vous allez être débité de '.$cmd->getPrixTotal().',00 € ! Vous allez recevoir les billets par email à l\'adresse '.$cmd->getEmail().'. Imprimez les et présentez les à l\'entrée');
         $em->persist($cmd);
         $em->flush();
         }
-        if($cmd->getPaiement() == true){return $this->redirectToRoute('musee_billetterie_home');    }      
+        if($cmd->getPaiement() == true){return $this->redirectToRoute('musee_email', array('id' => $cmd->getId()));    }      
         $editForm = $this->createForm(FormBilletterieGeneral::class, $cmd);
         return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $editForm->createView(), 'init' => 1, 'cmd' => $cmd));
              
 }
-
-    public function EmailAction()
-{
-   
-          $message = \Swift_Message::newInstance()
-        ->setSubject('Vos billets d\'entrée')
-        ->setFrom('Billetterie@MuseeduLouvre.com')
-        ->setTo('camille.palpacuer@gmail.com')
-        ->setBody(
-            $this->renderView('MuseeBilletterieBundle:Email:billets.html.twig'
-            ),
-            'text/html'
-        )
-        /*
-         * If you also want to include a plaintext version of the message
-        ->addPart(
-            $this->renderView(
-                'Emails/registration.txt.twig',
-                array('name' => $name)
-            ),
-            'text/plain'
-        )
-        */
-    ;
- $email=$this->get('mailer')->send($message);
-
-    return $this->render('MuseeBilletterieBundle:Formulaire:test.html.twig');
-}
-
-
-        }
+    /**
+ * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
+ */
+    public function EmailAction(Commande $cmd, Request $request)
+        {
+        $em = $this->getDoctrine()->getManager();
+        $visiteurs=$em->getRepository('MuseeBilletterieBundle:LigneCommande')->findBy(array('commande' => $cmd));
+        
+        // Format de date texte
+        setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
+	$dateFormat=utf8_encode(strftime("%d %B %Y", strtotime($cmd->getDate())));
+        
+        // Création de l'email
+        $message = \Swift_Message::newInstance();
+        $cid = $message->embed(\Swift_Image::fromPath('http://localhost/Symfony/web/img/logo.png'));
+        $message->setSubject('Vos billets d\'entrée')->setFrom('Billetterie@MuseeduLouvre.com');
+        $message->setTo($cmd->getEmail())
+                ->setBody( $this->renderView('MuseeBilletterieBundle:Email:email.html.twig', array('cid' => $cid, 'cmd' => $cmd, 'visiteurs' => $visiteurs,  'date' => $dateFormat) ),'text/html');
+        
+        // Création des billets au format PDF
+        $html = $this->renderView('MuseeBilletterieBundle:Billets:billets.html.twig', array('cmd' => $cmd, 'visiteurs' => $visiteurs, 'date' => $dateFormat));
+        $pdf=$this->get('knp_snappy.pdf')->getOutputFromHtml($html);
+        $message->attach(\Swift_Attachment::newInstance($pdf, 'billets.pdf'));
+        $this->get('mailer')->send($message);
+        
+    return $this->redirectToRoute('musee_billetterie_home');
+}}
 
 ?>

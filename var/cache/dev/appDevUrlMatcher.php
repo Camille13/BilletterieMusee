@@ -116,8 +116,8 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // musee_email
-        if ($pathinfo === '/Email') {
-            return array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::EmailAction',  '_route' => 'musee_email',);
+        if (0 === strpos($pathinfo, '/Email') && preg_match('#^/Email/(?P<id>.+)$#s', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'musee_email')), array (  '_controller' => 'Musee\\BilletterieBundle\\Controller\\FormulaireController::EmailAction',));
         }
 
         // homepage

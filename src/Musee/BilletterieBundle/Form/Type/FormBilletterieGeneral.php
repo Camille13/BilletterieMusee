@@ -33,12 +33,7 @@ class FormBilletterieGeneral extends AbstractType
                 ->add('quantite', IntegerType::class)
                 ->add('Valider', SubmitType::class);
         $builder->getForm();
-
-
-
-
-
-    }
+}
 
     public function configureOptions(OptionsResolver $resolver)
     {

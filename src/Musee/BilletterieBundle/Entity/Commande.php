@@ -7,6 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Musee\BilletterieBundle\Services\Validator\DateReservation;
 use Musee\BilletterieBundle\Services\Validator\QuantiteRestante;
+use Musee\BilletterieBundle\Services\Validator\Type;
 
 
 /**
@@ -28,7 +29,7 @@ class Commande {
     private $id;
 
 
-
+    
     private $ligneCommande;
     
     
@@ -45,6 +46,7 @@ class Commande {
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
+     * @Type{message=""}
      */
     private $type;
 
@@ -79,6 +81,16 @@ class Commande {
      * @ORM\Column(name="quantite", type="string", length=255)
      */
     private $quantite;
+    
+     /**
+     * @var string
+     * @ORM\Column(name="token", type="string", length=255, nullable=true)
+     */
+    private $token=null;
+    
+       
+    
+    
 
   public function __construct()
     {

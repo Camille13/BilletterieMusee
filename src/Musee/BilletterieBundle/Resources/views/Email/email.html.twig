@@ -1,0 +1,137 @@
+{# empty Twig template #}
+
+{% extends "MuseeBilletterieBundle::LayoutGeneral.html.twig" %}
+{% block title %}{{ parent() }} - Billetterie {% endblock %}
+{% block body %}
+
+ 
+
+<div class="container-fluid">
+    
+    
+  
+     
+    <div class="row ">
+<div class="col-lg-10 col-lg-offset-1 dashed" style="border: 2px dashed black;">
+    
+    
+<div class="row">
+<div class="col-xs-12  ">
+    <div class="row black" style="background-color:black; display:inline-block; color:white; width:100%;">
+<div class="col-xs-6" style="width:50%; float:left; background-color:black;">
+<h1 class="text-left" style="vertical-align: middle">Musée du Louvre</h1>
+
+
+</div>
+        <img  style="background-color:black; float:left; width: 33.33333333%; margin-left: 16.66666667%;" src="{% if cid is defined %} {{ cid }} {% else %}{{ app.request.getSchemeAndHttpHost() ~ asset('img/logo.png') }} {% endif %}"  class="col-xs-4 col-xs-offset-2"/>
+</div>
+</div>
+</div>
+
+
+
+    <div class="row" style="display:inline-block; width:100%;">
+ 
+  
+   <div class="col-xs-8 col-xs-offset-2 padding-1 border-b-gris" style="margin-left: 16.66666667%;
+width: 66.66666667%; padding: 1% 0%; "> 
+       <h2 class="text-left padding-2">Bonjour, </h2>
+       <p>Vous avez réservez {{ cmd.quantite }} billet(s) pour une visite le <mark>{{ date }}</mark></p>
+       <p>Vous trouvez ci joint vos billets au format PDF a imprimé.</p>
+       <p>Il vous serons demandez à l'entrée ainsi qu'une pièce d'identité à chaque visiteur, les billets sont nominatifs et non revendable.</p>
+       <p>Si vous bénéficier du tarif réduit un justificatif vous sera demandé. </p>
+        <p>Le musée du Louvre vous remercie pour votre commande. A bientôt.</p>
+        
+<h2 style="text-align: center; border-bottom: 4px solid #222; padding:2% 0%;">Facture n°2016-{{cmd.id}} </h2> 
+   </div>
+   </div>
+ {% for visiteur in visiteurs %}
+    <div class="row padding-2 " style="display:inline-block; width:100%;">
+ <div class="col-xs-8 col-xs-offset-2 border-b-gris" style="border-bottom: 4px solid #222;margin-left: 16.66666667%;width: 66.66666667%;float: left;">
+ <div class="row" style="display:inline-block; width:100%;">
+
+  
+   <div class="col-xs-8 col-xs-offset-2  "  style="margin-left: 16.66666667%;
+width: 66.66666667%; padding: 1% 0%; float:left; "> 
+    
+       <dl class="row" style="display:inline-block; width:100%;">
+      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;" >Nom</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.nom | capitalize }}</dd>
+      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Prénom</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.prenom | capitalize }}</dd>
+      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Date de naissance</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.born }}</dd>
+         <dt class="col-xs-6  padding-1" style="width:50%; float:left; padding:1% 0%;">Tarif réduit</dt>   <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{% if visiteur.tarifReduit == "0" %} Non {% else %} Oui {% endif %}</dd>
+      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Type</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;"> {% if cmd.type == "J" %} Journée
+       {% else %}Demi-journée {% endif %}</dd>
+       </dl>
+       
+ 
+   </div>
+          <div class="col-xs-2"  style="width: 16.66666667%;float: left;"> 
+          <div class="row" style="display:inline-block; width:100%;"> 
+           
+             <div class="col-xs-6" style="width:50%; float:left;">    
+    
+                 <div style="background-color:#222; border-radius:50%; width:80px; height:80px; color:white; font-weight:bold;"><p style="height:80px; font-size:20px; width:80px; line-height: 80px; text-align: center;">{{ visiteur.tarif }} €</p></div>
+          </div>
+
+
+         <div class="col-xs-6  "> 
+              </div>
+           </div>
+           </div>
+          </div>
+  </div>
+
+
+</div>
+ 
+
+          {% endfor %}  
+      <div class="row padding-2 " style="display:inline-block; width:100%;">
+ <div class="col-xs-8 col-xs-offset-2 " style="margin-left: 16.66666667%;
+width: 66.66666667%; padding: 1% 0%; float:left; ">
+ <div class="row">
+
+  
+   <div class="col-xs-8 col-xs-offset-2 text-left " style="margin-left: 16.66666667%;
+width: 66.66666667%; padding: 1% 0%; float:left; "> 
+              <h2>Total du paiement</h2>
+       <dl class="row">
+
+       </dl>
+       
+ 
+   </div>
+            <div class="col-xs-2"  style="width: 16.66666667%;float: left;"> 
+          <div class="row" style="display:inline-block; width:100%;"> 
+           
+             <div class="col-xs-6" style="width:50%; float:left;">    
+    
+                 <div style="background-color:#222; border-radius:50%; width:80px; height:80px; color:white; font-weight:bold;"><p style="height:80px; font-size:20px; width:80px; line-height: 80px; text-align: center;">{{ cmd.prixTotal }} €</p></div>
+          </div>
+
+
+         <div class="col-xs-6  "> 
+              </div>
+           </div>
+           </div>
+          </div>
+  </div>
+
+
+</div>         
+
+       
+  
+ 
+
+
+
+</div>
+             
+       
+</div>
+
+    
+    
+    
+            {% endblock %}
