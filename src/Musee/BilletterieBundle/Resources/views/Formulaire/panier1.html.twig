@@ -1,0 +1,79 @@
+{# src/Musee/BilletterieBundle/Resources/views/Formulaire/index.html.twig #}
+
+{% extends "MuseeBilletterieBundle::Layout.html.twig" %}
+{% block title %}{{ parent() }} - Billetterie {% endblock %}
+{% block body %}
+   
+        <div class="row">
+            
+            <div class="col-lg-6 col-lg-offset-3">
+
+              
+        
+                
+                
+                
+                
+                
+                         <div class="well">
+           
+                    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
+                   {{ form_row(form._token) }}
+                    <legend>Informations générales : </legend>
+                    {{ form_errors(form) }}
+            <dl class="row"><dt class="col-sm-6 text-right">Date de réservation :</dt><dd class="col-sm-6">{{cmd.date}}</dd></dl>
+            <dl class="row"><dt class="col-sm-6 text-right">Adresse email :</dt><dd class="col-sm-6">{{cmd.email}}</dd></dl>
+            <dl class="row"><dt class="col-sm-6 text-right">Type :</dt><dd class="col-sm-6">{% if cmd.type == 'J' %}
+              Journée{% else %} Demi-Journée {% endif %}</dd></dl>
+            <dl class="row"><dt class="col-sm-6 text-right">Nombre de billet(s) :</dt><dd class="col-sm-6">{{cmd.quantite}}</dd></dl>
+            <div class="form-group"><div class="col-sm-12 text-right"><legend>Total : {{cmd.prixTotal }},00 €</legend></div></div>
+                   
+                  
+                            
+            <div class="form-group text-center">
+                
+            <form action="" method="POST">
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button" 
+    data-key="pk_test_gVuQDsU6pRDpmt9mTE6t8q1m"
+    data-amount="{{cmd.prixTotal }}00"
+    data-name="Musée du Louvre"
+    data-description="{{cmd.quantite}} billet(s) pour le {{cmd.date}}"
+    data-image="../../img/images.jpg"
+    data-locale="auto"
+    data-panel-label="Payer par carte"
+    data-label="Payer par carte"
+    data-zip-code="true"
+    data-currency="eur">
+  </script>
+</form>
+                
+                
+              
+
+                         </div>
+                         </div>
+            
+       
+                          {% for ligneCommande in cmd.ligneCommande %}
+         <div class="well">
+<div class="form-group"><div class="col-sm-12 "><legend>   Billet n° {{init}} {% set init = init + 1 %} </legend></div> </div> 
+<dl class="row"><dt class="col-sm-6 text-right">Nom :</dt><dd class="col-sm-6">{{ligneCommande.nom|capitalize}}</dd></dl>
+<dl class="row"><dt class="col-sm-6 text-right">Prénom :</dt><dd class="col-sm-6">{{ligneCommande.prenom|capitalize}}</dd></dl>
+<dl class="row"><dt class="col-sm-6 text-right">Date de naissance :</dt><dd class="col-sm-6">{{ligneCommande.born}}</dd></dl>
+<dl class="row"><dt class="col-sm-6 text-right">Tarif réduit :</dt><dd class="col-sm-6">{% if ligneCommande.tarifReduit == 1 %} OUI {% else %} NON {% endif %}</dd></dl>
+     <div class="row"><div class="col-sm-12 text-right"><legend>Prix : {{ligneCommande.tarif}},00 €</legend></div></div>                  
+         </div>    
+                          {% endfor %}
+                        
+                       
+                                  
+                               
+             
+            </div>
+            </div>
+
+
+        {% endblock %}
+
+

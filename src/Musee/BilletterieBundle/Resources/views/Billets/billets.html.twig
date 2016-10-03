@@ -1,0 +1,110 @@
+{# empty Twig template #}
+
+{% extends "MuseeBilletterieBundle::LayoutGeneral.html.twig" %}
+{% block title %}{{ parent() }} - Billetterie {% endblock %}
+{% block body %}
+
+
+<div class="container-fluid">
+    
+    
+  
+      {% for visiteur in visiteurs %}
+    <div class="row ">
+<div class="col-lg-8 col-lg-offset-2 dashed">
+    
+    
+<div class="row">
+<div class="col-xs-12  ">
+    <div class="row black">
+<div class="col-xs-6">
+<h1 class="text-left">Musée du Louvre</h1>
+
+
+</div>
+        <img src="{{ app.request.getSchemeAndHttpHost() ~ asset('img/logo.png') }}"  class="col-xs-4 col-xs-offset-2"/>
+</div>
+</div>
+</div>
+    <div class="row">
+  
+
+  
+   <div class="col-xs-8 col-xs-offset-2 padding-1 border-b-gris"> 
+         <h2>Billet d'entrée utilisable le  {{ date }} </h2>
+    
+       
+       
+   </div>
+   </div>
+    <div class="row padding-2">
+  
+
+  
+   <div class="col-xs-4 col-xs-offset-4 "> 
+       
+       <dl class="row">
+      <dt class="col-xs-6 padding-1">Nom</dt>  <dd class="col-xs-6 padding-1">{{ visiteur.nom | capitalize }}</dd>
+      <dt class="col-xs-6 padding-1">Prénom</dt>  <dd class="col-xs-6 padding-1">{{ visiteur.prenom | capitalize }}</dd>
+      <dt class="col-xs-6 padding-1">Date de naissance</dt>  <dd class="col-xs-6 padding-1">{{ visiteur.born }}</dd>
+         <dt class="col-xs-6  padding-1">Tarif réduit</dt>   <dd class="col-xs-6 padding-1">{% if visiteur.tarifReduit == "0" %} Non {% else %} Oui {% endif %}</dd>
+      <dt class="col-xs-6 padding-1">Type</dt>  <dd class="col-xs-6 padding-1"> {% if cmd.type == "J" %} Journée
+       {% else %}Demi-journée {% endif %}</dd>
+       </dl>
+       
+ 
+   </div>
+          <div class="col-xs-4  "> 
+           
+             <div class="col-xs-6"/>    
+           <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100" height="100" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+
+  <circle cx="50" cy="50" r="40" fill="#222" class="black"/>
+  <text fill="white" text-anchor="middle" x="50" y="45" style="font-size:20px;" transform="rotate(25 20,40)"> {{ visiteur.tarif }} €</text>
+
+</svg>   
+
+          </div>
+
+         <div class="col-xs-6  "> 
+           </div>
+           </div>
+        
+
+
+</div>
+       
+
+         <div class="row padding-2">
+  
+
+  
+   <div class="col-xs-12 text-gris">         Numéro : {{ cmd.token }} - {{ visiteur.id }}</div>
+  
+   </div>
+       <div class="row">
+  
+
+  
+   <div class="col-xs-12 text-center gris">       
+       <p>Ce billet est valable uniquement le {{ cmd.date }}
+       {% if cmd.type == "J" %} toute la journée {% else %}après midi à partir de 14h00     
+       {% endif %}. L'entrée est nominative est ne peut être revendu, une carte d'identité vous sera demandé.
+       {% if visiteur.tarifReduit == "0" %}{% else %} Pour bénéficier du tarif réduit, un document justificatif vous sera demandé. {% endif %}
+       Ne pas jeter sur la voie public.</p>
+   </div>  
+   </div>  
+           
+</div>
+ <div class="col-lg-2">   
+   
+</div>
+</div>
+               {% endfor %}
+       
+</div>
+
+    
+    
+    
+            {% endblock %}

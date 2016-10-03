@@ -1,0 +1,23 @@
+.dashed{border:2px dashed black; margin-top:2%;}
+   .navbar-header a{font-family: "Playfair Display"; font-size:25px; }
+legend{font-size:16px; font-weight: bold;}
+#contenu {background: #000000 url('../img/museeLouvre.jpg') center center no-repeat; background-size:cover; height:100%;margin-top:50px;}
+
+dl{font-size:16px;}
+.gris{background-color:#222; color:white;}
+.text-gris{color:#222; font-weight:bold; font-size:18px; }
+.black{background-color:black; color:white;}
+.border-b-gris{border-bottom:4px solid #222; }
+ h4{ text-align:center;  }
+h2, text{ text-align:center;  font-family: "Playfair Display";}
+h5{text-align:center; }
+legend .text-muted {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size:12px; }
+h1{font-family: "Playfair Display";  font-weight:bold;  font-size:3.5em; margin-bottom: 0; }
+h4{margin-bottom:35px;  padding-top:0; margin-top: 0;}
+.well{background-color:rgba(245, 245, 245, 0.9);
+}
+.padding-1{padding : 1% 0%;}
+.padding-2{padding : 2% 0%;}
+.well > div, legend{ text-shadow: 1px 1px rgb(245, 245, 245);}
+iframe{padding-bottom:25px; }
+th{text-align: center;}
