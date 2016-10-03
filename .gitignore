@@ -3,3 +3,4 @@
 /vendor
 parameters.yml
 /web/bundles
+web/config.php
