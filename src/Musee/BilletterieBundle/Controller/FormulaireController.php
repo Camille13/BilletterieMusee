@@ -85,7 +85,7 @@ foreach ($cmd->getLigneCommande() as $visiteur) { $tarif = $this->container->get
     /**
      * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
      */
-    public function EmailAction(Commande $cmd) {
+    public function emailAction(Commande $cmd) {
         // Format de date texte
         setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
         $dateFormat = utf8_encode(strftime("%d %B %Y", strtotime($cmd->getDate())));

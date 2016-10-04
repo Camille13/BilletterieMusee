@@ -14,6 +14,6 @@ visiteurs_form:
         id: .+
 musee_email:
     path:    /Email/{id}
-    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:Email }
+    defaults:    { _controller: MuseeBilletterieBundle:Formulaire:email }
     requirements:
         id: .+
