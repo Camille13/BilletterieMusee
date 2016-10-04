@@ -32,11 +32,17 @@ class QuantiteRestanteValidator extends ConstraintValidator {
     GROUP BY c.date')->setParameter('date', $date);
 
     $qteBilletVendu = $query->getResult();
+    
+    // METTRE EN PARAM
     $qteMax=1000;
     if($qteBilletVendu)
     {
     $total=$qteBilletVendu[0]['total'];
-    $reste=$qteMax-$total;}
+    $reste=$qteMax-$total;
+    
+    
+    
+    }
     else{$reste=1000;}
     return $reste;
     }
@@ -48,10 +54,10 @@ class QuantiteRestanteValidator extends ConstraintValidator {
         $reste = $this->quantite($date);
         
      
-        if ($reste < 0) {
+        if ($reste < $value) {
             // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message
-            $this->context->buildViolation($constraint->message)->setParameters(array('%reste%' => 'il reste '.$reste . ' de place(s) pour le '.$date.''))->addViolation();
-        } 
+            $this->context->buildViolation($constraint->message)->setParameters(array('%reste%' => 'Vous ne pouvez pas réservez '.$value.'billet(s). Il reste '.$reste . ' de place(s) pour le '.$date.''))->addViolation();
+        }
           
     }
 
