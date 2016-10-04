@@ -1,3 +1,4 @@
 musee_billetterie:
     resource: "@MuseeBilletterieBundle/Resources/config/routing.yml"
     prefix:   /
+

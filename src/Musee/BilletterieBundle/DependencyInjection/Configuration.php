@@ -1,6 +1,6 @@
 <?php
 
-namespace Musee\Test2Bundle\DependencyInjection;
+namespace Musee\BilletterieBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
