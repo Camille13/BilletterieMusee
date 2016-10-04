@@ -8,7 +8,7 @@ panier:
     requirements:
         id: \d+  
 visiteurs_form:
-    path:    /visiteurs/{id}/{commande_id}
+    path:    /visiteurs/{id}
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:addVisiteurs }
     requirements:
         id: .+

@@ -13,7 +13,7 @@ class DateReservationValidator extends ConstraintValidator {
 
 
 
-    private function JourOff($value) {
+    private function jourOff($value) {
         $date = date("N", strtotime($value));
         if ($date == 2 || $date == 7) {
             return true;
@@ -22,7 +22,7 @@ class DateReservationValidator extends ConstraintValidator {
         }
     }
 
-    private function JourFerie($value) {
+    private function jourFerie($value) {
         $isferie = false;
         $datemois = date("d-m", strtotime($value));
         $ferie[] = "01-01";
@@ -41,11 +41,11 @@ class DateReservationValidator extends ConstraintValidator {
         return $isferie;
     }
 
-    private function NoReservable($value) {
-        if ($this->JourOff($value)) {
+    private function noReservable($value) {
+        if ($this->jourOff($value)) {
             return true;
         } else {
-            if ($this->JourFerie($value)) {
+            if ($this->jourFerie($value)) {
                 return true;
             } else {
                 return false;
@@ -54,7 +54,7 @@ class DateReservationValidator extends ConstraintValidator {
     }
 
     public function validate($value, Constraint $constraint) {
-        $isJNoReservable = $this->NoReservable($value);
+        $isJNoReservable = $this->noReservable($value);
             if ($isJNoReservable) {
             // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message
             $this->context->buildViolation($constraint->message)->setParameters(array('%date%' => $value . ', le musée est fermé le mardi, le dimanche et les jours fériés'))->addViolation();
