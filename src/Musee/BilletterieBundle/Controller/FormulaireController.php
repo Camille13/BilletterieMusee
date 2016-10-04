@@ -38,8 +38,8 @@ class FormulaireController extends Controller {
      * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
      */
     public function addVisiteursAction(Commande $cmd, Request $request) {
-
-        for ($i = 1; $i <= $cmd->getQuantite(); $i++) {
+        $quantite=$cmd->getQuantite();
+        for ($i = 1; $i <= $quantite; $i++) {
             $cmd->addLigneCommande(new LigneCommande());
         }
         $form = $this->createForm(FormBilletterieVisiteurs::class, $cmd);
