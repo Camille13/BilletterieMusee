@@ -38,7 +38,7 @@ class FormulaireController extends Controller {
      * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
      */
     public function addVisiteursAction(Commande $cmd, Request $request) {
-        $quantite=$cmd->getQuantite();
+        $quantite = $cmd->getQuantite();
         for ($i = 1; $i <= $quantite; $i++) {
             $cmd->addLigneCommande(new LigneCommande());
         }
@@ -58,28 +58,33 @@ class FormulaireController extends Controller {
     }
 
     /**
-
-
      * @ParamConverter("cmd", options={"mapping": {"id": "id"}})
      */
     public function paiementAction(Commande $cmd, Request $request) {
-
         //Calcule le prix total 
-$prixTotal = 0;
-foreach ($cmd->getLigneCommande() as $visiteur) { $tarif = $this->container->get('musee_billetterie.prix')->calculePrix($visiteur->getBorn(), $cmd->getDate(), $visiteur->getTarifReduit());  $visiteur->setTarif($tarif);   $prixTotal+=$tarif;        }
+        $prixTotal = 0;
+        $prix = $this->container->get('musee_billetterie.prix');
+
+        foreach ($cmd->getLigneCommande() as $ligneCommande) {
+            $tarif = $prix->calculePrix($ligneCommande->getBorn(), $cmd->getDate(), $ligneCommande->getTarifReduit());
+            $ligneCommande->setTarif($tarif);
+            $prixTotal+=$tarif;
+        }    
         $cmd->setPrixTotal($prixTotal);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($cmd);
-        $stripe = $this->container->get('musee_billetterie.stripe');
         $token = $request->request->get('stripeToken');
         if ($token) {
-            $stripe->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
+            $this->container->get('musee_billetterie.stripe')->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
             $cmd->setPaiement(true)->setToken($token);
             $request->getSession()->getFlashBag()->add('info', 'Vous allez être débité de ' . $cmd->getPrixTotal() . ',00 € ! Vous allez recevoir les billets par email à l\'adresse ' . $cmd->getEmail() . '. Imprimez les et présentez les à l\'entrée');
-            $em->persist($cmd);       $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cmd);
+            $em->flush();
         }
-        if ($cmd->getPaiement() === true) { return $this->redirectToRoute('musee_email', array('id' => $cmd->getId())); }
-        return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $this->createForm(FormBilletterieGeneral::class, $cmd)->createView(), 'init' => 1, 'cmd' => $cmd));
+        if ($cmd->getPaiement() === true) {
+            return $this->redirectToRoute('musee_email', array('id' => $cmd->getId()));
+        } else {
+            return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $this->createForm(FormBilletterieGeneral::class, $cmd)->createView(), 'init' => 1, 'cmd' => $cmd));
+        }
     }
 
     /**

@@ -14,10 +14,13 @@ services:
         
         arguments: 
         
+            - "@doctrine.orm.entity_manager"
             - "%prix_normal%"
             - "%prix_senior%"
             - "%prix_enfant%"
             - "%prix_reduit%"
+            
+            
         
     musee_billetterie.stripe:
 

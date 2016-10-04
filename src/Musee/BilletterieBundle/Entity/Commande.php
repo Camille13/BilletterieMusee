@@ -66,7 +66,7 @@ class Commande {
      *
      * @ORM\Column(name="prixTotal", type="integer")
      */
-    private $prixTotal=0;
+    private $prixTotal;
     
     
     /**
@@ -74,7 +74,7 @@ class Commande {
       * 
       * @ORM\Column(name="paiement", type="boolean")
       */
-    private $paiement=false;
+    private $paiement;
 
     /**
      * @var string
@@ -87,7 +87,7 @@ class Commande {
      * @var string
      * @ORM\Column(name="token", type="string", length=255, nullable=true)
      */
-    private $token=null;
+    private $token;
     
        
     
@@ -96,6 +96,9 @@ class Commande {
   public function __construct()
     {
         $this->ligneCommande = new ArrayCollection();
+        $this->paiement = false;
+        $this->prixTotal = 0;
+        $this->token = null;
     }
 
     
@@ -121,10 +124,24 @@ class Commande {
         
     }
 
-  
+    /**
+     * Add type
+     *
+     * @param int $prix
+     *
+     * @return Commande
+     */
     
   
-    
+    public function addPrixTotal($prix)
+    {
+        
+        
+        $this->prixTotal += $prix;
+        
+        return $this;
+        
+    }
     
     
     
