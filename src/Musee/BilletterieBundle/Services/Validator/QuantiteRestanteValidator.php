@@ -9,8 +9,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-
-
 class QuantiteRestanteValidator extends ConstraintValidator {
 
     private $requestStack;
@@ -21,44 +19,37 @@ class QuantiteRestanteValidator extends ConstraintValidator {
     public function __construct(RequestStack $requestStack, EntityManagerInterface $em) {
         $this->requestStack = $requestStack;
         $this->em = $em;
-          }
-
+    }
 
     private function quantite($date) {
-    $query = $this->em->createQuery(
-    'SELECT c.date, SUM(c.quantite) as total
+        $query = $this->em->createQuery(
+                        'SELECT c.date, SUM(c.quantite) as total
     FROM MuseeBilletterieBundle:Commande c
     WHERE c.date = :date
     GROUP BY c.date')->setParameter('date', $date);
 
-    $qteBilletVendu = $query->getResult();
-    
-    // METTRE EN PARAM
-    $qteMax=1000;
-    if($qteBilletVendu)
-    {
-    $total=$qteBilletVendu[0]['total'];
-    $reste=$qteMax-$total;
-    
-    
-    
-    }
-    else{$reste=1000;}
-    return $reste;
+        $qteBilletVendu = $query->getResult();
+
+        // METTRE EN PARAM
+        $qteMax = 1000;
+        if ($qteBilletVendu) {
+            $total = $qteBilletVendu[0]['total'];
+            $reste = $qteMax - $total;
+        } else {
+            $reste = 1000;
+        }
+        return $reste;
     }
 
     public function validate($value, Constraint $constraint) {
-        
-        $date=$this->context->getObject()->getDate();
-       
+
+        $date = $this->context->getObject()->getDate();
+
         $reste = $this->quantite($date);
-        
-     
         if ($reste < $value) {
             // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message
-            $this->context->buildViolation($constraint->message)->setParameters(array('%reste%' => 'Vous ne pouvez pas réservez '.$value.'billet(s). Il reste '.$reste . ' de place(s) pour le '.$date.''))->addViolation();
+            $this->context->buildViolation($constraint->message)->setParameters(array('%reste%' => 'Vous ne pouvez pas réservez ' . $value . 'billet(s). Il reste ' . $reste . ' de place(s) pour le ' . $date . ''))->addViolation();
         }
-          
     }
 
 }
