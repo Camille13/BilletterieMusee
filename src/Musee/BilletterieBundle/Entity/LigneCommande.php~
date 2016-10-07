@@ -61,7 +61,12 @@ private $id;
      */
     private $tarif=0;
     
-
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
+     */
+    private $pays;
     
   
 

@@ -61,7 +61,12 @@ private $id;
      */
     private $tarif=0;
     
-
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=255)
+     */
+    private $pays;
     
   
 
@@ -218,5 +223,29 @@ public function addCommande(Commande $commande)
     public function getTarif()
     {
         return $this->tarif;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return LigneCommande
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
     }
 }

@@ -62,6 +62,14 @@
                             {{ form_widget(ligneCommande.born, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
+                              
+                           <div class="form-group">
+                        {{ form_label(ligneCommande.pays, "Pays *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
+                        {{ form_errors(ligneCommande.pays) }}
+                        <div class="col-sm-8">
+                            {{ form_widget(ligneCommande.pays, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    </div>     
                     <div class="form-group" style="text-align:left;">
                         {{ form_label(ligneCommande.tarifReduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         <div class="col-sm-8 ">
@@ -72,8 +80,7 @@
                         {{ form_errors(ligneCommande.tarifReduit) }}
                   
                     </div>
-                             
-                                   
+                              
                                       
                          {% endfor %}
                          

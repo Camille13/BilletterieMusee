@@ -64,7 +64,6 @@ class FormulaireController extends Controller {
         //Calcule le prix total 
         $prixTotal = 0;
         $prix = $this->container->get('musee_billetterie.prix');
-
         foreach ($cmd->getLigneCommande() as $ligneCommande) {
             $tarif = $prix->calculePrix($ligneCommande->getBorn(), $cmd->getDate(), $ligneCommande->getTarifReduit());
             $ligneCommande->setTarif($tarif);
