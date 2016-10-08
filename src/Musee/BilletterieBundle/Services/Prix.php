@@ -11,7 +11,6 @@ class Prix {
     private $prix_senior;
     private $prix_enfant;
     private $prix_reduit;
-    private $em;
 
  
     public function __construct($prix_normal, $prix_senior, $prix_enfant, $prix_reduit) {
