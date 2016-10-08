@@ -43,20 +43,3 @@ class FormBilletterieVisiteurs extends AbstractType
 
 	
 	
-	
-	
-	
-	
-	
-	
-  
-  
-  
-  
-  
-  
-  
-
-
-
-?>

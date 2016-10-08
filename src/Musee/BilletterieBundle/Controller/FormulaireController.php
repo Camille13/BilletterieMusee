@@ -112,4 +112,3 @@ class FormulaireController extends Controller {
 
 }
 
-?>
