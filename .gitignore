@@ -1,4 +1,4 @@
-/nbproject
+nbproject/
 /var
 /vendor
 parameters.yml
@@ -7,4 +7,3 @@ web/config.php
 app/.htaccess
 web/.htaccess
 src/.htaccess
-!.gitignore
