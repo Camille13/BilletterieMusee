@@ -7,3 +7,4 @@ web/config.php
 app/.htaccess
 web/.htaccess
 src/.htaccess
+!.gitignore
