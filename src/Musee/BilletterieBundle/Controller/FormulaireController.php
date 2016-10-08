@@ -69,7 +69,9 @@ class FormulaireController extends Controller {
             $ligneCommande->setTarif($tarif);
             $prixTotal+=$tarif;
         }    
+        
         $cmd->setPrixTotal($prixTotal);
+     
         $token = $request->request->get('stripeToken');
         if ($token) {
             $this->container->get('musee_billetterie.stripe')->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);

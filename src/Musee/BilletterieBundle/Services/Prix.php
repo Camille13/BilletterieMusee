@@ -74,42 +74,8 @@ class Prix {
         return $prix;
     }
 
-    /**
 
-     * Vérifie si le texte est un spam ou non
 
-     *
 
-     * @param string $text
-
-     * @return bool
-
-     */
-    public function isSpam($text) {
-
-        return strlen($text) < 50;
-    }
-
-    /**
-
-     * Vérifie si le texte est un spam ou non
-
-     *
-
-     * @param int $commande_id
-
-     * @return int
-
-     */
-    public function totalPrix($commande_id) {
-        $query = $this->em->createQuery(
-                        'SELECT SUM(c.tarif) as total
-    FROM MuseeBilletterieBundle:LigneCommande c
-    WHERE c.commande = :commande_id')->setParameter('commande_id', $commande_id);
-
-        $totalPrix = $query->getResult();
-
-        return $totalPrix;
-    }
 
 }

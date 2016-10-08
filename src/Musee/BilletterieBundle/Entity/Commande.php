@@ -124,24 +124,6 @@ class Commande {
         
     }
 
-    /**
-     * Add type
-     *
-     * @param int $prix
-     *
-     * @return Commande
-     */
-    
-  
-    public function addPrixTotal($prix)
-    {
-        
-        
-        $this->prixTotal += $prix;
-        
-        return $this;
-        
-    }
     
     
     
