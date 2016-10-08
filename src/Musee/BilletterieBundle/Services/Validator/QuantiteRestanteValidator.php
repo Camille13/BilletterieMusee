@@ -5,19 +5,18 @@
 namespace Musee\BilletterieBundle\Services\Validator;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class QuantiteRestanteValidator extends ConstraintValidator {
 
-    private $requestStack;
+
     private $em;
 
     // Les arguments déclarés dans la définition du service arrivent au constructeur
     // On doit les enregistrer dans l'objet pour pouvoir s'en resservir dans la méthode validate()
-    public function __construct(RequestStack $requestStack, EntityManagerInterface $em) {
-        $this->requestStack = $requestStack;
+    public function __construct(EntityManagerInterface $em) {
+      
         $this->em = $em;
     }
 

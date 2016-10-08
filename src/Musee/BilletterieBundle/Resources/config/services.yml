@@ -14,7 +14,6 @@ services:
         
         arguments: 
         
-            - "@doctrine.orm.entity_manager"
             - "%prix_normal%"
             - "%prix_senior%"
             - "%prix_enfant%"
@@ -40,7 +39,7 @@ services:
 
         class: Musee\BilletterieBundle\Services\Validator\QuantiteRestanteValidator     # La classe du service, ici notre validateur déjà créé
 
-        arguments: ["@request_stack", "@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
+        arguments: ["@doctrine.orm.entity_manager"] # Les données qu'on injecte au service : la requête et l'EntityManager
 
         tags:
 

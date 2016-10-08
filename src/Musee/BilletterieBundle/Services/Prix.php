@@ -4,7 +4,6 @@
 
 namespace Musee\BilletterieBundle\Services;
 
-use Doctrine\ORM\EntityManagerInterface;
 
 class Prix {
 
@@ -15,12 +14,12 @@ class Prix {
     private $em;
 
  
-    public function __construct(EntityManagerInterface $em, $prix_normal, $prix_senior, $prix_enfant, $prix_reduit) {
+    public function __construct($prix_normal, $prix_senior, $prix_enfant, $prix_reduit) {
         $this->prix_normal = $prix_normal;
         $this->prix_senior = $prix_senior;
         $this->prix_enfant = $prix_enfant;
         $this->prix_reduit = $prix_reduit;
-        $this->em = $em;
+        
     }
    /**
 
