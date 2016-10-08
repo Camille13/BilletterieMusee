@@ -63,15 +63,13 @@ class FormulaireController extends Controller {
     public function paiementAction(Commande $cmd, Request $request) {
         //Calcule le prix total 
         $prixTotal = 0;
-        $prix = $this->container->get('musee_billetterie.prix');
         foreach ($cmd->getLigneCommande() as $ligneCommande) {
-            $tarif = $prix->calculePrix($ligneCommande->getBorn(), $cmd->getDate(), $ligneCommande->getTarifReduit());
-            $ligneCommande->setTarif($tarif);
-            $prixTotal+=$tarif;
-        }    
-        
+            $ligneCommande->setTarif($this->container->get('musee_billetterie.prix')->calculePrix($ligneCommande->getBorn(), $cmd->getDate(), $ligneCommande->getTarifReduit()));
+                     $prixTotal+=$ligneCommande->getTarif();
+        }
+
         $cmd->setPrixTotal($prixTotal);
-     
+
         $token = $request->request->get('stripeToken');
         if ($token) {
             $this->container->get('musee_billetterie.stripe')->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
@@ -111,4 +109,3 @@ class FormulaireController extends Controller {
     }
 
 }
-
