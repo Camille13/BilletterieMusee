@@ -17,4 +17,3 @@ musee_email:
     defaults:    { _controller: MuseeBilletterieBundle:Formulaire:email }
     requirements:
         id: .+
-        
