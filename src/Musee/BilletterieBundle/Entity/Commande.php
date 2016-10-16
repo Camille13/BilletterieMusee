@@ -29,10 +29,17 @@ class Commande {
 
 
     /**
- * @ORM\OneToMany(targetEntity="Musee\BilletterieBundle\Entity\LigneCommande", cascade={"persist"}, mappedBy="commande" )
+ * @ORM\OneToMany(targetEntity="Musee\BilletterieBundle\Entity\LigneCommande", cascade={"remove"}, mappedBy="commande" )
  */
     private $ligneCommande;
     
+     /**
+     * @var datetime
+     * @ORM\Column(name="dateCommande", type="datetime")
+     * 
+    )
+     */
+    private $dateCommande;
     
     /**
      * @var string
@@ -99,6 +106,7 @@ class Commande {
         $this->paiement = false;
         $this->prixTotal = 0;
         $this->token = null;
+        $this->dateCommande =new \DateTime("now"); 
     }
 
     

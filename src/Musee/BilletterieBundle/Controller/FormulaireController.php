@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class FormulaireController extends Controller {
 
     public function indexAction(Request $request) {
-
+        $this->container->get('musee_billetterie.clean')->suppLigneCommande();
         $cmd = new Commande();
         $visiteurs = new ArrayCollection();
         $Form = $this->createForm(FormBilletterieGeneral::class, $cmd);
@@ -65,7 +65,7 @@ class FormulaireController extends Controller {
         $prixTotal = 0;
         foreach ($cmd->getLigneCommande() as $ligneCommande) {
             $ligneCommande->setTarif($this->container->get('musee_billetterie.prix')->calculePrix($ligneCommande->getBorn(), $cmd->getDate(), $ligneCommande->getTarifReduit()));
-                     $prixTotal+=$ligneCommande->getTarif();
+            $prixTotal += $ligneCommande->getTarif();
         }
 
         $cmd->setPrixTotal($prixTotal);

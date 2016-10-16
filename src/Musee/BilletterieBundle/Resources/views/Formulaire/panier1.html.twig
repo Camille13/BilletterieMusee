@@ -4,9 +4,9 @@
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
    
-        <div class="row">
+        <div class="row padding-bottom-100">
             
-            <div class="col-lg-6 col-lg-offset-3">
+            <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 
               
         
@@ -15,21 +15,99 @@
                 
                 
                 
-                         <div class="well">
+                         <div class="well ">
            
                     {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
                    {{ form_row(form._token) }}
-                    <legend>Informations générales : </legend>
+                    <legend>Commande : </legend>
                     {{ form_errors(form) }}
-            <dl class="row"><dt class="col-sm-6 text-right">Date de réservation :</dt><dd class="col-sm-6">{{cmd.date}}</dd></dl>
-            <dl class="row"><dt class="col-sm-6 text-right">Adresse email :</dt><dd class="col-sm-6">{{cmd.email}}</dd></dl>
-            <dl class="row"><dt class="col-sm-6 text-right">Type :</dt><dd class="col-sm-6">{% if cmd.type == 'J' %}
-              Journée{% else %} Demi-Journée {% endif %}</dd></dl>
-            <dl class="row"><dt class="col-sm-6 text-right">Nombre de billet(s) :</dt><dd class="col-sm-6">{{cmd.quantite}}</dd></dl>
-            <div class="form-group"><div class="col-sm-12 text-right"><legend>Total : {{cmd.prixTotal }},00 €</legend></div></div>
+                    
+               
+<div class="row padding-02">
+   
+        
+   <div class="col-lg-8 padding-2">
+   <div class="row">
+    <dt class="col-xs-5  ">Date de réservation :</dt>
+    <dd class="col-xs-7 " >{{cmd.date}}</dd>
+   </div>
+   </div>
+    <div class="col-lg-4 padding-2">
+    <div class="row">
+<dt class="col-xs-5 ">Quantité :</dt>
+<dd class="col-xs-7">{{cmd.quantite}}</dd>
+    </div>
+    </div>
+</div> 
+    
+<div class="row padding-02">
+   
+        
+   <div class="col-lg-8 padding-2">
+   <div class="row">
+    <dt class="col-xs-5  ">Adresse email :</dt>
+    <dd class="col-xs-7 " >{{cmd.email}}</dd>
+   </div>
+   </div>
+    <div class="col-lg-4 padding-2">
+    <div class="row">
+<dt class="col-xs-5 ">Type :</dt>
+<dd class="col-xs-7">{% if cmd.type == 'J' %}
+              Journée{% else %} Demi-Journée {% endif %}</dd>
+    </div>
+    </div>
+</div>    
+     
+         
+       
+                          {% for ligneCommande in cmd.ligneCommande %}
+     
+        
+<div class="form-group padding-2"><div class="col-xs-7 "><legend>   Billet n° {{init}} {% set init = init + 1 %} </legend></div><div class="col-xs-5 text-right"><legend>{{ligneCommande.tarif }},00 €</legend></div> </div> 
+
+
+<div class="row padding-02">
+   
+        
+   <div class="col-lg-7 padding-2">
+   <div class="row">
+    <dt class="col-xs-6  ">Nom et prénom :</dt>
+    <dd class="col-xs-6 " >{{ligneCommande.nom|capitalize}} {{ligneCommande.prenom|capitalize}}</dd>
+   </div>
+   </div>
+    <div class="col-lg-5 padding-2">
+    <div class="row">
+<dt class="col-xs-6 ">Pays :</dt>
+<dd class="col-xs-6">{{ligneCommande.pays|capitalize}}</dd>
+    </div>
+    </div>
+</div>
+
+<div class="row padding-02">
+     <div class="col-lg-7 padding-2">
+   <div class="row">
+    <dt class="col-xs-6 ">Date de naissance :</dt>
+    <dd class="col-xs-6">{{ligneCommande.born}}</dd>
+   </div>
+   </div>
+    <div class="col-lg-5 padding-2">
+   <div class="row">
+<dt class="col-xs-6">Tarif réduit :</dt>
+<dd class="col-xs-6">{% if ligneCommande.tarifReduit == 1 %} Oui {% else %} Non {% endif %}</dd>
+   </div>
+   </div>
+
+</div>
+
+        {% endfor %}
+                    <legend></legend>  
+              <div class="row padding-02">
+    
+                                <div class="form-group"><div class="col-sm-12 text-right"><p class="bold">Total de la commande : {{cmd.prixTotal }},00 €</p></div></div>
                    
                   
-                            
+                        
+                              
             <div class="form-group text-center">
                 
             <form action="" method="POST">
@@ -49,30 +127,16 @@
 </form>
                 
                 
-              
+              </div> 
 
-                         </div>
-                         </div>
-            
-       
-                          {% for ligneCommande in cmd.ligneCommande %}
-         <div class="well">
-<div class="form-group"><div class="col-sm-12 "><legend>   Billet n° {{init}} {% set init = init + 1 %} </legend></div> </div> 
-<dl class="row"><dt class="col-sm-6 text-right">Nom :</dt><dd class="col-sm-6">{{ligneCommande.nom|capitalize}}</dd></dl>
-<dl class="row"><dt class="col-sm-6 text-right">Prénom :</dt><dd class="col-sm-6">{{ligneCommande.prenom|capitalize}}</dd></dl>
-<dl class="row"><dt class="col-sm-6 text-right">Date de naissance :</dt><dd class="col-sm-6">{{ligneCommande.born}}</dd></dl>
-<dl class="row"><dt class="col-sm-6 text-right">Pays :</dt><dd class="col-sm-6">{{ligneCommande.pays|capitalize}}</dd></dl>
-<dl class="row"><dt class="col-sm-6 text-right">Tarif réduit :</dt><dd class="col-sm-6">{% if ligneCommande.tarifReduit == 1 %} OUI {% else %} NON {% endif %}</dd></dl>
-     <div class="row"><div class="col-sm-12 text-right"><legend>Prix : {{ligneCommande.tarif}},00 €</legend></div></div>                  
-         </div>    
-                          {% endfor %}
-                        
-                       
-                                  
-                               
+                         </div>                             
              
             </div>
             </div>
+            </div>
+         
+        
+     
 
 
         {% endblock %}

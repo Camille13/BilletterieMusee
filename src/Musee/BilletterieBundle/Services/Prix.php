@@ -29,7 +29,7 @@ class Prix {
      * @return int
 
      */
-    private function calculeAge($dateNaissance, $dateReservation) {
+    public static function calculeAge($dateNaissance, $dateReservation) {
 
         $age = date("Y-m-d", strtotime($dateReservation)) - date("Y-m-d", strtotime($dateNaissance));
         return $age;
@@ -47,7 +47,7 @@ class Prix {
 
      */
     public function calculePrix($dateNaissance, $dateReservation, $reduit) {
-        $age = $this->calculeAge($dateNaissance, $dateReservation);
+        $age = self::calculeAge($dateNaissance, $dateReservation);
 
         if ($age < 4) {
             $prix = 0;

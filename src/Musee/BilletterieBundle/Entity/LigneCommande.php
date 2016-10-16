@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class LigneCommande
 {    
       /**
-   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande", cascade={"remove"}, inversedBy="ligneCommande")
+   * @ORM\JoinColumn(nullable=false, onDelete="cascade")
    */
     
 private $commande;

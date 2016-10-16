@@ -1,4 +1,5 @@
-{   "name": "camille/symfony",
+{
+    "name": "camille/symfony",
     "description": "Billetterie Projet OC",
     "license": "proprietary",
     "type": "project",
@@ -30,10 +31,12 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "stripe/stripe-php": "3.*",
         "knplabs/knp-snappy-bundle": "~1.4"
-        },
+    },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "crysalead/kahlan": "^2.5",
+        "phpunit/phpunit": "^4.8"
     },
     "scripts": {
         "post-install-cmd": [
@@ -51,7 +54,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
-        ]
+        ],
+        "test": "kahlan --reporter=verbose"
     },
     "extra": {
         "symfony-app-dir": "app",

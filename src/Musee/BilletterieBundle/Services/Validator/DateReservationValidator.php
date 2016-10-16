@@ -9,11 +9,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class DateReservationValidator extends ConstraintValidator {
 
-
-
-
-
-    private function jourOff($value) {
+    public static function jourOff($value) {
         $date = date("N", strtotime($value));
         if ($date == 2 || $date == 7) {
             return true;
@@ -22,7 +18,7 @@ class DateReservationValidator extends ConstraintValidator {
         }
     }
 
-    private function jourFerie($value) {
+    public static function jourFerie($value) {
         $isferie = false;
         $datemois = date("d-m", strtotime($value));
         $ferie[] = "01-01";
@@ -41,11 +37,11 @@ class DateReservationValidator extends ConstraintValidator {
         return $isferie;
     }
 
-    private function noReservable($value) {
-        if ($this->jourOff($value)) {
+    public static function noReservable($value) {
+        if (self::jourOff($value)) {
             return true;
         } else {
-            if ($this->jourFerie($value)) {
+            if (self::jourFerie($value)) {
                 return true;
             } else {
                 return false;
@@ -54,7 +50,7 @@ class DateReservationValidator extends ConstraintValidator {
     }
 
     public function validate($value, Constraint $constraint) {
-        $isJNoReservable = $this->noReservable($value);
+        $isJNoReservable = self::noReservable($value);
             if ($isJNoReservable) {
             // C'est cette ligne qui déclenche l'erreur pour le formulaire, avec en argument le message
             $this->context->buildViolation($constraint->message)->setParameters(array('%date%' => $value . ', le musée est fermé le mardi, le dimanche et les jours fériés'))->addViolation();

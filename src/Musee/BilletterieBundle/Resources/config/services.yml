@@ -54,3 +54,11 @@ services:
         tags:
 
             - { name: validator.constraint_validator, alias: musee_billetterie_type }  # C'est avec l'alias qu'on retrouvera le service
+
+    musee_billetterie.clean:                     
+
+        class: Musee\BilletterieBundle\Services\Clean    
+
+        arguments: ["@doctrine.orm.entity_manager"] 
+        
+        

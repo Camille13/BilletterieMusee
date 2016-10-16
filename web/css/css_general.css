@@ -14,3 +14,8 @@ h4{margin-bottom:35px; text-shadow: 1px 1px rgb(245, 245, 245); padding-top:0; m
 .well > div, legend{ text-shadow: 1px 1px rgb(245, 245, 245);}
 iframe{padding-bottom:25px; }
 th{text-align: center;}
+#contenu > .row{background-color: rgba(255, 255, 255, 0.3);}
+.padding-2{padding:1% 0%;}
+.padding-02{padding:0% 2%;}
+.bold{font-size:16px; font-weight:bold;}
+.padding-bottom-100{padding-bottom:150px;}
