@@ -4,7 +4,40 @@
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
  
-        
+<script>
+function DisableSpecificDates(date) {
+var m = date.getMonth();
+var d = date.getDate();
+var day = date.getDay();
+if(d == 1 && (m == 4 || m == 10)){   return [false] ;  } else { 
+if(d == 25 && m == 11){   return [false] ;  } else {
+if(day == 0){   return [false] ;  } else { 
+if(day == 2){  return [false] ;  } else {  return [true] ; }
+}}}}
+
+$( function() {
+$( "#form_billetterie_general_date" ).datepicker({
+altField: "#form_billetterie_general_date",
+closeText: 'Fermer',
+prevText: 'Précédent',
+nextText: 'Suivant',
+firstDay: 1 ,
+currentText: 'Aujourd\'hui',
+monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+dayNamesMin: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+weekHeader: 'Sem.',
+dateFormat: 'dd-mm-yy',
+minDate: 0, 
+maxDate: "+12M +0D",
+beforeShowDay: DisableSpecificDates
+});
+
+   } );
+  </script>
+  
         <div class="row">
         <div class="col-md-7 col-md-offset-1">
             <div class="well col-md-12" id="billetterie">
