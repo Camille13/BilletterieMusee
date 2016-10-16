@@ -60,4 +60,3 @@ services:
         class: Musee\BilletterieBundle\Services\Clean    
 
         arguments: ["@doctrine.orm.entity_manager"]
-        
