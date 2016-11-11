@@ -1,5 +1,4 @@
 <?php
-
 // src/Musee/BilletterieBundle/Controller/FormulaireController.php
 
 namespace Musee\BilletterieBundle\Controller;
@@ -21,7 +20,6 @@ class FormulaireController extends Controller {
         $visiteurs = new ArrayCollection();
         $Form = $this->createForm(FormBilletterieGeneral::class, $cmd);
         $Form->handleRequest($request);
-
         if ($Form->isValid()) {
             foreach ($cmd->getLigneCommande() as $visiteur) {
                 $visiteurs->add($visiteur);
@@ -69,9 +67,8 @@ class FormulaireController extends Controller {
         }
 
         $cmd->setPrixTotal($prixTotal);
-
         $token = $request->request->get('stripeToken');
-        if ($token) {
+        if($token) {
             $this->container->get('musee_billetterie.stripe')->paiementStripe($token, $request->request->get('stripeEmail'), $prixTotal);
             $cmd->setPaiement(true)->setToken($token);
             $request->getSession()->getFlashBag()->add('info', 'Vous allez être débité de ' . $cmd->getPrixTotal() . ',00 € ! Vous allez recevoir les billets par email à l\'adresse ' . $cmd->getEmail() . '. Imprimez les et présentez les à l\'entrée');
@@ -79,10 +76,10 @@ class FormulaireController extends Controller {
             $em->persist($cmd);
             $em->flush();
         }
-        if ($cmd->getPaiement() === true) {
+        if($cmd->getPaiement() === true) {
             return $this->redirectToRoute('musee_email', array('id' => $cmd->getId()));
         } else {
-            return $this->render('MuseeBilletterieBundle:Formulaire:panier1.html.twig', array('form' => $this->createForm(FormBilletterieGeneral::class, $cmd)->createView(), 'init' => 1, 'cmd' => $cmd));
+            return $this->render('MuseeBilletterieBundle:Formulaire:panier.html.twig', array('init' => 1, 'cmd' => $cmd));
         }
     }
 
@@ -91,20 +88,12 @@ class FormulaireController extends Controller {
      */
     public function emailAction(Commande $cmd) {
         // Format de date texte
-        setlocale(LC_TIME, 'fr_FR.utf8', 'fra');
-        $dateFormat = utf8_encode(strftime("%d %B %Y", strtotime($cmd->getDate())));
-        // Création de l'email
-        $message = \Swift_Message::newInstance();
-        $cid = $message->embed(\Swift_Image::fromPath('http://localhost/Symfony/web/img/logo.png'));
-        $message->setSubject('Vos billets d\'entrée')->setFrom('Billetterie@MuseeduLouvre.com');
-        $message->setTo($cmd->getEmail())
-                ->setBody($this->renderView('MuseeBilletterieBundle:Email:email.html.twig', array('cid' => $cid, 'cmd' => $cmd, 'visiteurs' => $cmd->getLigneCommande(), 'date' => $dateFormat)), 'text/html');
+        $dateFormat = $this->container->get('musee_billetterie.convertdate')->dateEnTexte($cmd->getDate());
         // Création des billets au format PDF
         $html = $this->renderView('MuseeBilletterieBundle:Billets:billets.html.twig', array('cmd' => $cmd, 'visiteurs' => $cmd->getLigneCommande(), 'date' => $dateFormat));
         $pdf = $this->get('knp_snappy.pdf')->getOutputFromHtml($html);
-        $message->attach(\Swift_Attachment::newInstance($pdf, 'billets.pdf'));
-        $this->get('mailer')->send($message);
-
+        //Envoie de l'email
+        $this->container->get('musee_billetterie.email')->envoieEmail($cmd->getId(), $dateFormat, $pdf);
         return $this->redirectToRoute('musee_billetterie_home');
     }
 

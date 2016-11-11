@@ -13,8 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 class LigneCommande
 {    
       /**
-   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande", cascade={"persist"})
-   * @ORM\JoinColumn(nullable=false)
+   * @ORM\ManyToOne(targetEntity="Musee\BilletterieBundle\Entity\Commande", cascade={"remove"}, inversedBy="ligneCommande")
+   * @ORM\JoinColumn(nullable=false, onDelete="cascade")
    */
     
 private $commande;
@@ -41,9 +41,9 @@ private $id;
     private $prenom;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="born", type="string", length=255)
+     * @ORM\Column(name="born", type="date")
      */
     private $born;
 
@@ -223,5 +223,29 @@ public function addCommande(Commande $commande)
     public function getTarif()
     {
         return $this->tarif;
+    }
+
+    /**
+     * Set pays
+     *
+     * @param string $pays
+     *
+     * @return LigneCommande
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+
+        return $this;
+    }
+
+    /**
+     * Get pays
+     *
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
     }
 }

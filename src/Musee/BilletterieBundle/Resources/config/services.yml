@@ -59,5 +59,17 @@ services:
 
         class: Musee\BilletterieBundle\Services\Clean    
 
-        arguments: ["@doctrine.orm.entity_manager"] #
+        arguments: ["@doctrine.orm.entity_manager"]
+        
+    musee_billetterie.convertdate:                     
+
+        class: Musee\BilletterieBundle\Services\ConvertDate 
+        
+    musee_billetterie.email:                     
+
+        class: Musee\BilletterieBundle\Services\Email
+        
+        arguments: ["@doctrine.orm.entity_manager", "@twig", "@mailer"] 
+        
+        
         

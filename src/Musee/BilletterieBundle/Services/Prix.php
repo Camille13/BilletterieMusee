@@ -4,7 +4,6 @@
 
 namespace Musee\BilletterieBundle\Services;
 
-
 class Prix {
 
     private $prix_normal;
@@ -12,15 +11,14 @@ class Prix {
     private $prix_enfant;
     private $prix_reduit;
 
- 
     public function __construct($prix_normal, $prix_senior, $prix_enfant, $prix_reduit) {
         $this->prix_normal = $prix_normal;
         $this->prix_senior = $prix_senior;
         $this->prix_enfant = $prix_enfant;
         $this->prix_reduit = $prix_reduit;
-        
     }
-   /**
+
+    /**
 
      * Calcule l'age de du visteur au moment de la visite
      * @param date $dateNaissance
@@ -31,7 +29,7 @@ class Prix {
      */
     public static function calculeAge($dateNaissance, $dateReservation) {
 
-        $age = date("Y-m-d", strtotime($dateReservation)) - date("Y-m-d", strtotime($dateNaissance));
+        $age = date("Y-m-d", strtotime($dateReservation)) - ($dateNaissance->format('Y-m-d'));
         return $age;
     }
 
@@ -71,9 +69,5 @@ class Prix {
         }
         return $prix;
     }
-
-
-
-
 
 }

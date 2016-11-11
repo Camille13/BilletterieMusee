@@ -3,41 +3,21 @@
 {% extends "MuseeBilletterieBundle::Layout.html.twig" %}
 {% block title %}{{ parent() }} - Billetterie {% endblock %}
 {% block body %}
-  
-    
-    
-        <div class="row">
-            
-            <div class="col-lg-8 col-lg-offset-2">
+    <div class="row">           
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="well">
+                {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
+                {{ form_row(form._token) }}
+                <legend>Informations générales : </legend>
+                {{ form_errors(form) }}
+                <div class="form-group"><div class="col-sm-6 text-right">Date de réservation :</div> <div class="col-sm-6">{{ date }}</div></div>
+                <div class="form-group"><div class="col-sm-6 text-right">Adresse email :</div> <div class="col-sm-6">{{ email }}</div></div>
+                <div class="form-group"><div class="col-sm-6 text-right">Type :</div> <div class="col-sm-6">{% if type == 'J' %}
+                        Journée{% else %} Demi-Journée {% endif %}</div></div>
+                <div class="form-group"><div class="col-sm-6 text-right">Nombre de billet(s) :</div> <div class="col-sm-6">{{ quantite}}</div></div>
+                    {% for ligneCommande in form.ligneCommande %}
 
-              
-                
-                
-                
-                
-                
-                
-                         <div class="well">
-                    
-                    {{ form_start(form, { 'attr': {'class': 'form-horizontal', 'method': 'GET'} }) }}
-                   {{ form_row(form._token) }}
-                    <legend>Informations générales : </legend>
-                    {{ form_errors(form) }}
-            
-                    <div class="form-group"><div class="col-sm-6 text-right">Date de réservation :</div> <div class="col-sm-6">{{ date }}</div></div>
-                    <div class="form-group"><div class="col-sm-6 text-right">Adresse email :</div> <div class="col-sm-6">{{ email }}</div></div>
-                    <div class="form-group"><div class="col-sm-6 text-right">Type :</div> <div class="col-sm-6">{% if type == 'J' %}
-              Journée{% else %} Demi-Journée {% endif %}</div></div>
-                    <div class="form-group"><div class="col-sm-6 text-right">Nombre de billet(s) :</div> <div class="col-sm-6">{{ quantite}}</div></div>
-                        
-                     
-                 
-                  
-                        {% for ligneCommande in form.ligneCommande %}
-     
-                            
-                        <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>    
-                                     
+                    <div class="form-group"><div class="col-sm-4"><legend>   Visiteur  {{init}} {% set init = init + 1 %} </legend></div> </div>         
                     <div class="form-group">
                         {{ form_label(ligneCommande.nom, "Nom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(ligneCommande.nom) }}
@@ -45,8 +25,6 @@
                             {{ form_widget(ligneCommande.nom, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
-   
-                   
                     <div class="form-group">
                         {{ form_label(ligneCommande.prenom, "Prénom *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(ligneCommande.prenom) }}
@@ -54,49 +32,38 @@
                             {{ form_widget(ligneCommande.prenom, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>
-
                     <div class="form-group">
                         {{ form_label(ligneCommande.born, "Date de naissance *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(ligneCommande.born) }}
                         <div class="col-sm-8">
-                            {{ form_widget(ligneCommande.born, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_widget(ligneCommande.born, {'attr': {'class': ''}}) }}
                         </div>
                     </div>
-                              
-                           <div class="form-group">
+                    <div class="form-group">
                         {{ form_label(ligneCommande.pays, "Pays *", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(ligneCommande.pays) }}
                         <div class="col-sm-8">
                             {{ form_widget(ligneCommande.pays, {'attr': {'class': 'form-control'}}) }}
                         </div>
                     </div>     
-                    <div class="form-group" style="text-align:left;">
-                        {{ form_label(ligneCommande.tarifReduit, "Tarif réduit", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
-                        <div class="col-sm-8 ">
-
-                            {{ form_widget(ligneCommande.tarifReduit, {'attr': {'class': 'left-block'}}) }}
-                            Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture
-                        </div>
+                    <div class="form-group" >
+                        {{ form_label(ligneCommande.tarifReduit, "Tarif réduit: Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture", {'label_attr': {'class': 'col-sm-4 control-label'}}) }}
                         {{ form_errors(ligneCommande.tarifReduit) }}
-                  
+                        <div class="col-sm-8 col-sm-offset-4">
+                             {{ form_widget(ligneCommande.tarifReduit) }}
+                            <p>Je suis étudiant, militaire, employé de Musée ou d'un service du ministère de la culture</p>
+                           
+                        </div>  
+                    </div>                                      
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-sm-12 ">
+                        {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }}
                     </div>
-                              
-                                      
-                         {% endfor %}
-                         
-                         <div class="form-group">
-                        <div class="col-sm-12 ">
-                            {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary center-block'}}) }}
-
-                        </div>
-                    </div>  
-                         
-                         
-     {{ form_end(form)}}
-                </div>
+                </div>    
+                {{ form_end(form)}}
             </div>
-
-
-        {% endblock %}
+        </div>
+    {% endblock %}
 
 

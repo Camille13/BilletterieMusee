@@ -2,87 +2,61 @@
 
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{% block title %}Musée du Louvre{% endblock %}</title>
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Musée du Louvre{% endblock %}</title>
+    </head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-<link href="http://localhost/Symfony/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="http://localhost/Symfony/web/css/css_general.css" rel="stylesheet">
- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Dancing+Script">
- <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet"> 
- <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet"> 
- <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet"> 
- <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> 
- <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">  
- <style>
-
-</style>
-  <body>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
- 
-  
-  
-  <nav class="navbar navbar-fixed-top navbar-inverse" >
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-	
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-  
-      <img src="{{ asset('img/logo.png') }}" style="margin:0px; padding:0;"height="50px"/>
- 
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-center mynav">
-
- <li> <a href="#billetterie">Billetterie</a> </li>
-                    <li> <a href="#tarifs">Tarifs</a> </li>
-                    <li> <a href="#infos">Informations pratiques</a> </li>
-        </ul>
- 
-    
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-
-    
-   <div class="container-fluid" id="contenu">
-   
-
-               {% for message in app.session.flashbag.get('info') %}
-<div class="row">
-            <div class="col-md-12 alert alert-success">
-          
-  <strong>Paiement réussi !</strong> {{ message }}
-
-  
-
-    </div>
-    </div>
-              {% endfor %}
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-3">
-                <h1>Le Musée du Louvre</h1>
-                <h4>Découvrez le plus grand musée du monde </h4>
+    <link href="http://localhost/Symfony/web/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost/Symfony/web/css/css_general.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Dancing+Script">
+    <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">  
+    <body>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <nav class="navbar navbar-fixed-top navbar-inverse" >
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="{{ asset('img/logo.png') }}" style="margin:0px; padding:0;"height="50px"/>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-center mynav">
+                        <li> <a href="#billetterie">Billetterie</a> </li>
+                        <li> <a href="#tarifs">Tarifs</a> </li>
+                        <li> <a href="#infos">Informations pratiques</a> </li>
+                    </ul> 
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container-fluid" id="contenu">
+            {% for message in app.session.flashbag.get('info') %}
+                <div class="row">
+                    <div class="col-md-12 alert alert-success">
+                        <strong>Paiement réussi !</strong> {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <h1>Le Musée du Louvre</h1>
+                    <h4>Découvrez le plus grand musée du monde </h4>
+                </div>
             </div>
+            {% block body %}
+            {% endblock %}
         </div>
- 
-  
-  {% block body %}
-
-    {% endblock %}
-    
-  </div>
- <script src="http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js"></script>
-  </body>
+        <script src="http://localhost/Symfony/web/bootstrap/js/bootstrap.min.js"></script>
+    </body>
 </html>

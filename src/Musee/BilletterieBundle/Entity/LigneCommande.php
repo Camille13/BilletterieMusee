@@ -41,9 +41,9 @@ private $id;
     private $prenom;
 
     /**
-     * @var string
+     * @var date
      *
-     * @ORM\Column(name="born", type="string", length=255)
+     * @ORM\Column(name="born", type="date")
      */
     private $born;
 

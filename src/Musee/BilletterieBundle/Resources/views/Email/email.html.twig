@@ -37,9 +37,9 @@
 width: 66.66666667%; padding: 1% 0%; "> 
        <h2 class="text-left padding-2">Bonjour, </h2>
        <p>Vous avez réservé {{ cmd.quantite }} billet(s) pour une visite le {{ date }}</p>
-       <p>Vous trouvez ci joint vos billets au format PDF a imprimé.</p>
-       <p>Il vous serons demandez à l'entrée ainsi qu'une pièce d'identité à chaque visiteur, les billets sont nominatifs et non revendable.</p>
-       <p>Si vous bénéficier du tarif réduit un justificatif vous sera demandé. </p>
+       <p>Vous trouverez ci-joint vos billets au format PDF à imprimé.</p>
+       <p>Il vous serons demandés à l'entrée ainsi qu'une pièce d'identité à chaque visiteur, les billets sont nominatifs et non revendable.</p>
+       <p>Si vous bénéficiez du tarif réduit un justificatif vous sera demandé. </p>
         <p>Le musée du Louvre vous remercie pour votre commande. A bientôt.</p>
         
 <h2 style="text-align: center; border-bottom: 4px solid #222; padding:2% 0%;">Facture n°2016-{{cmd.id}} </h2> 
@@ -57,7 +57,7 @@ width: 66.66666667%; padding: 1% 0%; float:left; ">
        <dl class="row" style="display:inline-block; width:100%;">
       <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;" >Nom</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.nom | capitalize }}</dd>
       <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Prénom</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.prenom | capitalize }}</dd>
-      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Date de naissance</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.born }}</dd>
+      <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Date de naissance</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{{ visiteur.born|date('d-m-Y') }}</dd>
          <dt class="col-xs-6  padding-1" style="width:50%; float:left; padding:1% 0%;">Tarif réduit</dt>   <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;">{% if visiteur.tarifReduit == "0" %} Non {% else %} Oui {% endif %}</dd>
       <dt class="col-xs-6 padding-1" style="width:50%; float:left; padding:1% 0%;">Type</dt>  <dd class="col-xs-6 padding-1" style="width:50%; float:left; margin-left:0; padding:1% 0%;"> {% if cmd.type == "J" %} Journée
        {% else %}Demi-journée {% endif %}</dd>

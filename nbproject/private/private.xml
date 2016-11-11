@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Entity/LigneCommande.php</file>
+            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Services/Prix.php</file>
+            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Resources/views/Formulaire/visiteurs.html.twig</file>
             <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Controller/FormulaireController.php</file>
-            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Entity/Commande.php</file>
-            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Services/Clean.php</file>
-            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Services/Validator/DateReservation.php</file>
             <file>file:/C:/wamp2/www/Symfony/composer.json</file>
-            <file>file:/C:/wamp2/www/Symfony/spec/DemoSpec.php</file>
-            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Resources/config/routing.yml</file>
+            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Resources/views/Formulaire/index.html.twig</file>
+            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Resources/views/Formulaire/panier.html.twig</file>
+            <file>file:/C:/wamp2/www/Symfony/src/Musee/BilletterieBundle/Resources/config/services.yml</file>
         </group>
     </open-files>
 </project-private>
